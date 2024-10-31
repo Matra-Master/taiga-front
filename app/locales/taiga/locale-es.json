@@ -1763,7 +1763,8 @@
             "LANGUAGE": "Idioma",
             "LANGUAGE_DEFAULT": "- usar idioma por defecto -",
             "THEME": "Tema",
-            "THEME_DEFAULT": "-- usar tema por defecto --"
+            "THEME_DEFAULT": "-- usar tema por defecto --",
+            "CLOCKIFY_KEY": "Clave de Clockify"
         }
     },
     "WIKI": {

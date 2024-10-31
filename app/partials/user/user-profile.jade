@@ -125,6 +125,20 @@ div.wrapper(
                         maxlength="210"
                     )
 
+                fieldset
+                    label(for="clockify_key", translate="USER_PROFILE.FIELD.CLOCKIFY_KEY")
+                    input(
+                        type="text"
+                        autocorrect="off"
+                        autocapitalize="none"
+                        name="clockify_key"
+                        id="clockify_key"
+                        ng-model="user.clockify_key"
+                        data-required="false"
+                        data-maxlength="255"
+                        placeholder="Get API key from Clockify -> Preferences -> Advanced",
+                    )
+
                 fieldset.submit
                     button.btn-small(
                         variant="primary"
