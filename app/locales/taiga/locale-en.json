@@ -1758,7 +1758,8 @@
             "LANGUAGE": "Language",
             "LANGUAGE_DEFAULT": "-- use default language --",
             "THEME": "Theme",
-            "THEME_DEFAULT": "-- use default theme --"
+            "THEME_DEFAULT": "-- use default theme --",
+            "CLOCKIFY_KEY": "Clockify key"
         }
     },
     "WIKI": {
