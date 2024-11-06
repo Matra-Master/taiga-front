@@ -45,6 +45,10 @@ urls = {
     # User - Storage
     "user-storage": "/user-storage"
 
+    # User - Clockify
+    "user-start-clocki": "/users/start_clockify_timer"
+    "user-stop-clocki": "/users/stop_clockify_timer"
+
     # Memberships
     "memberships": "/memberships"
     "bulk-create-memberships": "/memberships/bulk_create"
