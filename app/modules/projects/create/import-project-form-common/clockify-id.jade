@@ -1,0 +1,18 @@
+
+//- This source code is licensed under the terms of the
+//- GNU Affero General Public License found in the LICENSE file in
+//- the root directory of this source tree.
+//-
+//- Copyright (c) 2021-present Kaleidos INC
+
+fieldset
+    input.e2e-create-project-title(
+        ng-class="{'checksley-error': !!vm.errorList.includes('clockifyId') }"
+        type="text"
+        ng-model="vm.projectForm.clockify_id"
+        placeholder="{{'PROJECT.COMMON.PROJECT_CLOCKIFY_ID' | translate}}"
+        name="project-clockify_id"
+        data-required="true"
+        required
+    )
+    .error-text(ng-if="!!vm.errorList.includes('clockify_id')") {{ 'COMMON.FORM_ERRORS.REQUIRED'|translate }}

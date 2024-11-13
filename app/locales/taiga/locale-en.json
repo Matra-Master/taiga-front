@@ -1002,7 +1002,8 @@
         "COMMON": {
             "DETAILS": "New project details",
             "PROJECT_TITLE": "Project Name (Required)",
-            "PROJECT_DESCRIPTION": "Project Description (Required)"
+            "PROJECT_DESCRIPTION": "Project Description (Required)",
+            "PROJECT_CLOCKIFY_ID": "Project Clockify Id (Required)"
         },
         "DUPLICATE": {
             "TITLE": "Duplicate Project",
