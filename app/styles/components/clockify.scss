@@ -1,9 +1,12 @@
 .timer-button {
-    background-color: $clocki-light-blue;
+    background-color: $clockify-light-blue;
     border-radius: 10px;
-    color: $clocki-white;
+    color: $clockify-white;
     font-weight: 600;
     padding: 10px;
+}
+.stop-button {
+    background-color: $clockify-red;
 }
 .timer-buttons-container {
     align-items: center;
