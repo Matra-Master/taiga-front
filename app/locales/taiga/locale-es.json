@@ -1323,6 +1323,8 @@
         "ACTION_DELETE": "Borrar epic"
     },
     "US": {
+        "TIMER_START": "Se inicio el timer de Clocki",
+        "TIMER_STOP": "Se paro el timer de Clocki",
         "PAGE_TITLE": "{{userStorySubject}} - Historia de Usuario {{userStoryRef}} - {{projectName}}",
         "PAGE_DESCRIPTION": "Estado: {{userStoryStatus }}. Completado el {{userStoryProgressPercentage}}% ({{userStoryClosedTasks}} de {{userStoryTotalTasks}} tareas cerradas). Puntos: {{userStoryPoints}}. Descripción: {{userStoryDescription}}",
         "SECTION_NAME": "Historia de usuario",
