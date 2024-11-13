@@ -1318,6 +1318,8 @@
         "ACTION_DELETE": "Delete epic"
     },
     "US": {
+        "TIMER_START": "Clockify timer start",
+        "TIMER_STOP": "Clockify timer stop",
         "PAGE_TITLE": "{{userStorySubject}} - User Story {{userStoryRef}} - {{projectName}}",
         "PAGE_DESCRIPTION": "Status: {{userStoryStatus }}. Completed {{userStoryProgressPercentage}}% ({{userStoryClosedTasks}} of {{userStoryTotalTasks}} tasks closed). Points: {{userStoryPoints}}. Description: {{userStoryDescription}}",
         "SECTION_NAME": "User story",

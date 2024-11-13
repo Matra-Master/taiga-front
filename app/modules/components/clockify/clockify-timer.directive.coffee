@@ -1,13 +1,18 @@
-ClockifyTimerDirective = ($http, $currentUser, $tgUrls) ->
+ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $translate) ->
     link = ($scope, $el, $attrs) ->
-
         $scope.startTimer = () ->
             userStorieData = $scope.$parent.$$watchers[4].last
             proyectName = userStorieData.project_extra_info.name
             clockifyKey = $currentUser.getUser().get("clockify_key")
             
             data = {subject: userStorieData.subject, ref: userStorieData.ref, proyectName, clockifyKey}
-            $http.post($tgUrls.resolve("user-start-clocki"), data)
+            response = $http.post($tgUrls.resolve("user-start-clocki"), data)
+
+            response.then () =>
+                confirmService.notify("success",$translate.instant("US.TIMER_START"))
+
+            response.catch (err) =>
+                confirmService.notify("error",err.data.error_message)
 
         $scope.stopTimer = () ->
             userStorieData = $scope.$parent.$$watchers[4].last
@@ -15,7 +20,13 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls) ->
             clockifyKey = $currentUser.getUser().get("clockify_key")
             
             data = {subject: userStorieData.subject, ref: userStorieData.ref, proyectName, clockifyKey}
-            $http.post($tgUrls.resolve("user-stop-clocki"), data)
+            response = $http.post($tgUrls.resolve("user-stop-clocki"), data)
+
+            response.then () =>
+                confirmService.notify("success",$translate.instant("US.TIMER_STOP"))
+
+            response.catch (err) =>
+                confirmService.notify("error",err.data.error_message)
 
     return {
         scope: true,
@@ -28,7 +39,9 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls) ->
 ClockifyTimerDirective.$inject = [
     "$tgHttp",
     "tgCurrentUserService",
-    "$tgUrls"
+    "$tgUrls",
+    "$tgConfirm",
+    "$translate"
 ]
 
 angular.module("taigaComponents").directive("tgClockifyTimer", ClockifyTimerDirective)
