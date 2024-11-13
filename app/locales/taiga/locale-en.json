@@ -52,6 +52,7 @@
         "RELATED_USERSTORIES": "Related user stories",
         "CARD": {
             "ASSIGN_TO": "Assign To",
+            "COPY_TG_ID": "Copy TG-ID",
             "MOVE_TO_TOP": "Move to top",
             "EDIT": "Edit card",
             "DELETE": "Delete card",

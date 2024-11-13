@@ -1077,6 +1077,15 @@ CardActionsDirective = ($template, $translate, projectService) ->
                                     $scope.vm.onClickAssignedTo({id: $scope.vm.item.get('id')})
                             },
                         )
+                    actions.push(
+                        {
+                            text: $translate.instant('COMMON.CARD.COPY_TG_ID'),
+                            icon: 'icon-clipboard',
+                            event: () ->
+                                 cardId = "TG-" + $scope.vm.item.getIn(['model', 'ref'])
+                                 navigator.clipboard.writeText(cardId)
+                        },
+                    )
 
                     if projectService.project.get('my_permissions').includes($scope.vm.getDeletePermisionKey())
                         actions.push(

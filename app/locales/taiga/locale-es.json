@@ -51,6 +51,7 @@
         "RELATED_USERSTORIES": "Historias de usuario relacionadas",
         "CARD": {
             "ASSIGN_TO": "Asignado a",
+            "COPY_TG_ID": "Copiar TG-ID",
             "EDIT": "Editar tarjeta",
             "DELETE": "Elimina tarjeta",
             "DELETE_ISSUE": "Borrar petición",
