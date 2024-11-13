@@ -16,6 +16,7 @@ Resource = (urlsService, http, paginateResponseService) ->
 
         return http.post(url, JSON.stringify(data))
             .then (result) => return Immutable.fromJS(result.data)
+            .catch (err) => return err
 
     service.duplicate = (projectId, data) ->
 
