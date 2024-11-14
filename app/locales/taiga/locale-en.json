@@ -547,6 +547,7 @@
         "PROJECT_PROFILE": {
             "PAGE_TITLE": "{{sectionName}} - Project profile  - {{projectName}}",
             "PROJECT_DETAILS": "Project details",
+            "PROJECT_CLOCKIFY_ID": "Project Clockify Id",
             "PROJECT_NAME": "Project name",
             "TAGS": "Tags",
             "DESCRIPTION": "Description",
