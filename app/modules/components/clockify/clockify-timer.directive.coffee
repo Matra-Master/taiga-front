@@ -2,10 +2,13 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
     link = ($scope, $el, $attrs) ->
         $scope.startTimer = () ->
             userStorieData = $scope.$parent.$$watchers[4].last
-            proyectName = userStorieData.project_extra_info.name
+            projectData = $scope.$parent.$parent.project
             clockifyKey = $currentUser.getUser().get("clockify_key")
             
-            data = {subject: userStorieData.subject, ref: userStorieData.ref, proyectName, clockifyKey}
+            data = { subject: userStorieData.subject, ref: userStorieData.ref, clockifyKey }
+            if projectData && projectData.clockify_id
+                projectClockifyId = projectData.clockify_id
+                data = Object.assign({}, data, { projectClockifyId })
             response = $http.post($tgUrls.resolve("user-start-clocki"), data)
 
             response.then () =>
