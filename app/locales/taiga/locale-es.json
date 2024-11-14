@@ -52,6 +52,7 @@
         "CARD": {
             "ASSIGN_TO": "Asignado a",
             "COPY_TG_ID": "Copiar TG-ID",
+            "COPY_TG_URL": "Copiar URL",
             "EDIT": "Editar tarjeta",
             "DELETE": "Elimina tarjeta",
             "DELETE_ISSUE": "Borrar petición",

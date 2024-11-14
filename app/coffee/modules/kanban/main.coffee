@@ -1086,6 +1086,15 @@ CardActionsDirective = ($template, $translate, projectService) ->
                                  navigator.clipboard.writeText(cardId)
                         },
                     )
+                    actions.push(
+                        {
+                            text: $translate.instant('COMMON.CARD.COPY_TG_URL'),
+                            icon: 'icon-clipboard-url',
+                            event: () ->
+                                 currentPath = window.location.href
+                                 navigator.clipboard.writeText(currentPath)
+                        },
+                    )
 
                     if projectService.project.get('my_permissions').includes($scope.vm.getDeletePermisionKey())
                         actions.push(

@@ -53,6 +53,7 @@
         "CARD": {
             "ASSIGN_TO": "Assign To",
             "COPY_TG_ID": "Copy TG-ID",
+            "COPY_TG_URL": "Copy URL",
             "MOVE_TO_TOP": "Move to top",
             "EDIT": "Edit card",
             "DELETE": "Delete card",
