@@ -546,6 +546,7 @@
             "PAGE_TITLE": "{{sectionName}} - Perfil del proyecto - {{projectName}}",
             "PROJECT_DETAILS": "Info del proyecto",
             "PROJECT_NAME": "Nombre del proyecto",
+            "PROJECT_CLOCKIFY_ID": "Id de proyecto en Clockify",
             "TAGS": "Etiquetas",
             "DESCRIPTION": "Descripción",
             "RECRUITING": "¿Este proyecto está buscando a gente?",

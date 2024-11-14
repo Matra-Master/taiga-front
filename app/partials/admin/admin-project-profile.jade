@@ -79,6 +79,18 @@ div.wrapper(
                         data-required="true"
                     )
                 fieldset
+                    label(for="project-clockify-id") {{ 'ADMIN.PROJECT_PROFILE.PROJECT_CLOCKIFY_ID' | translate }}
+                    input(
+                        type="text"
+                        name="name"
+                        placeholder="{{'ADMIN.PROJECT_PROFILE.PROJECT_CLOCKIFY_ID' | translate}}"
+                        id="project-clockify-id"
+                        ng-model="project.clockify_id"
+                        data-required="true"
+                        maxlength="36"
+                    )
+
+                fieldset
                     label(for="tags") {{ 'ADMIN.PROJECT_PROFILE.TAGS' | translate }}
 
                     tg-tag-line-common.tags-block(
