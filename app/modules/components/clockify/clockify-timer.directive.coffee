@@ -18,11 +18,9 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
                 confirmService.notify("error",err.data.error_message)
 
         $scope.stopTimer = () ->
-            userStorieData = $scope.$parent.$$watchers[4].last
-            proyectName = userStorieData.project_extra_info.name
             clockifyKey = $currentUser.getUser().get("clockify_key")
             
-            data = {subject: userStorieData.subject, ref: userStorieData.ref, proyectName, clockifyKey}
+            data = { clockifyKey }
             response = $http.post($tgUrls.resolve("user-stop-clocki"), data)
 
             response.then () =>
