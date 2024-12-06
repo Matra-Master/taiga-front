@@ -1,9 +1,8 @@
-div.attachments-header
-  h3.attachments-title Clockify
 div.timer-buttons-container
   button.timer-button(
     ng-click="startTimer()"
-  ) Start task timer
+  ) {{vm.start}}
   button.timer-button.stop-button(
+    ng-if="!vm.removeStopButton"
     ng-click="stopTimer()"
-    ) Stop current timer
+    ) {{vm.stop}}

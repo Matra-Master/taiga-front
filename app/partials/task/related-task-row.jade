@@ -52,6 +52,12 @@
         tg-svg(svg-icon="icon-arrow-down", ng-style="{'fill': task.status_extra_info.color}")
         <% } %>
 
+.task-clockify-buttons(
+    tg-clockify-timer
+    start="Start task"
+    task="task"
+    remove-stop-button="true"
+)
 .assigned-to(
     tg-related-task-assigned-to-inline-edition="task"
 )
