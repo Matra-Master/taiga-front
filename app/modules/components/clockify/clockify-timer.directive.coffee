@@ -1,13 +1,18 @@
 ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $translate) ->
     link = ($scope, $el, $attrs) ->
         $scope.startTimer = () ->
-            userStorieData = $scope.$parent.$$watchers[4].last
-            projectData = $scope.$parent.$parent.project
+            { userStory, task } = $scope.vm
+            project = $scope.$parent.$parent.project
             clockifyKey = $currentUser.getUser().get("clockify_key")
-            
-            data = { subject: userStorieData.subject, ref: userStorieData.ref, clockifyKey }
-            if projectData && projectData.clockify_id
-                projectClockifyId = projectData.clockify_id
+
+            subject = task?.subject || userStory?.subject || ""
+            taskRef = task?.ref || ""
+            usRef = task?.user_story_extra_info?.ref || userStory?.ref || ""
+
+            data = { subject, usRef, taskRef, clockifyKey }
+
+            if project?.clockify_id
+                projectClockifyId = project.clockify_id
                 data = Object.assign({}, data, { projectClockifyId })
             response = $http.post($tgUrls.resolve("user-start-clocki"), data)
 
@@ -35,6 +40,14 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
         controllerAs: "vm",
         templateUrl: "components/clockify/clockify-timer.html",
         link: link
+        bindToController: true,
+        scope: {
+            start: "@",
+            stop: "@",
+            userStory: "=",
+            task: "=",
+            removeStopButton: "="
+        },
     }
 
 ClockifyTimerDirective.$inject = [

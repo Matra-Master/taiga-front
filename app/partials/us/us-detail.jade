@@ -120,9 +120,14 @@ div.wrapper(
                 required-edition-perm="modify_us"
             )
 
-            div(
+            div.attachments-header
+                h3.attachments-title Clockify
+
+            div.clockify-buttons-containter(
                 tg-clockify-timer
-                required-perm="modify_us"
+                start="Start story timer"
+                stop="Stop current timer"
+                user-story="us"
             )
 
             tg-attachments-full(
