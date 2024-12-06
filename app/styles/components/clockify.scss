@@ -1,19 +1,20 @@
 .timer-button {
     background-color: $clockify-light-blue;
-    border-radius: 10px;
+    border-radius: 5px;
     color: $clockify-white;
     font-weight: 600;
-    padding: 10px;
+    padding: 10px 20px;
 }
 .stop-button {
     background-color: $clockify-red;
 }
+.clockify-buttons-containter {
+    margin: 16px 0;
+}
 .timer-buttons-container {
     align-items: center;
     display: flex;
-    gap: 20%;
-    justify-content: center;
-    margin-bottom: 32px;
-    margin-top: 10px;
+    gap: 16px;
+    justify-content: flex-start;
     width: 100%;
 }
