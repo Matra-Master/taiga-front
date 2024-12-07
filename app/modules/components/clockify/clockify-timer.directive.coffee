@@ -1,7 +1,20 @@
 ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $translate) ->
+    clockifyTagIds = {
+        "BF-Visual": "6703e94c0ccb9e4db57aaa1f"
+        "BF-QA": "6703e981ce255b6aed515b6d"
+        "BF-Prod": "6744e0c77d300d3841215319"
+    }
+
+    getTags = (project, userStory)->
+        issueType = project.issue_types.find((issue) => issue.id == userStory.type)
+        return [clockifyTagIds[issueType.name]]
+
     link = ($scope, $el, $attrs) ->
         $scope.startTimer = () ->
             { userStory, task } = $scope.vm
+            tagIds = []
+            if($scope.vm.issueProject)
+                tagIds = getTags($scope.vm.issueProject, userStory)
             project = $scope.$parent.$parent.project
             clockifyKey = $currentUser.getUser().get("clockify_key")
 
@@ -9,7 +22,7 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
             taskRef = task?.ref || ""
             usRef = task?.user_story_extra_info?.ref || userStory?.ref || ""
 
-            data = { subject, usRef, taskRef, clockifyKey }
+            data = { subject, usRef, taskRef, tagIds, clockifyKey }
 
             if project?.clockify_id
                 projectClockifyId = project.clockify_id
@@ -47,6 +60,7 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
             userStory: "=",
             task: "=",
             removeStopButton: "="
+            issueProject: "="
         },
     }
 
