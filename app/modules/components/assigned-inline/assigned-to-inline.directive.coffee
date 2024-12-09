@@ -7,7 +7,7 @@
 ###
 
 AssignedToInlineDirective = ($rootscope, $confirm, $repo, $loading, $modelTransform, $template
-$translate, $compile, $currentUserService, avatarService, $userListService) ->
+$translate, $compile, $currentUserService, avatarService, $userListService, $timeout) ->
     link = ($scope, $el, $attr, $model) ->
         isEditable = ->
             return $scope.project?.my_permissions?.indexOf($attr.requiredPerm) != -1
@@ -16,6 +16,10 @@ $translate, $compile, $currentUserService, avatarService, $userListService) ->
             selectedId = $model.$modelValue.assigned_to
             users = $userListService.searchUsers(text)
             users = _.reject(users, {"id": selectedId}) if selectedId
+            setTimeout () ->
+                        document.getElementsByClassName("users-search")[0].focus()
+                    , 550
+
 
             visibleUsers = _.slice(users, 0, 5)
             visibleUsers = _.map visibleUsers, (user) -> user.avatar = avatarService.getAvatar(user)
@@ -90,4 +94,4 @@ $translate, $compile, $currentUserService, avatarService, $userListService) ->
 
 angular.module('taigaComponents').directive("tgAssignedToInline", ["$rootScope", "$tgConfirm",
 "$tgRepo", "$tgLoading", "$tgQueueModelTransformation", "$tgTemplate", "$translate", "$compile",
-"tgCurrentUserService", "tgAvatarService", "tgUserListService", AssignedToInlineDirective])
+"tgCurrentUserService", "tgAvatarService", "tgUserListService", "$timeout", AssignedToInlineDirective])
