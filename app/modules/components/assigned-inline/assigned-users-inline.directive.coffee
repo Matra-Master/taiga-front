@@ -17,6 +17,9 @@ $translate, $compile, $currentUserService, avatarService, $userListService) ->
 
         renderUsersList = (text) ->
             users = $userListService.searchUsers(text)
+            setTimeout () ->
+                        document.getElementsByClassName("users-search")[0].focus()
+                    , 550
 
             # Add selected users
             selected = []
