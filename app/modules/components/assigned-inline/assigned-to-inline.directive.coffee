@@ -7,7 +7,7 @@
 ###
 
 AssignedToInlineDirective = ($rootscope, $confirm, $repo, $loading, $modelTransform, $template
-$translate, $compile, $currentUserService, avatarService, $userListService, $timeout) ->
+$translate, $compile, $currentUserService, avatarService, $userListService) ->
     link = ($scope, $el, $attr, $model) ->
         isEditable = ->
             return $scope.project?.my_permissions?.indexOf($attr.requiredPerm) != -1
@@ -94,4 +94,4 @@ $translate, $compile, $currentUserService, avatarService, $userListService, $tim
 
 angular.module('taigaComponents').directive("tgAssignedToInline", ["$rootScope", "$tgConfirm",
 "$tgRepo", "$tgLoading", "$tgQueueModelTransformation", "$tgTemplate", "$translate", "$compile",
-"tgCurrentUserService", "tgAvatarService", "tgUserListService", "$timeout", AssignedToInlineDirective])
+"tgCurrentUserService", "tgAvatarService", "tgUserListService", AssignedToInlineDirective])
