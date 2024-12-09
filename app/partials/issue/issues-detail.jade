@@ -92,6 +92,17 @@ div.wrapper(
                 edit-permission = "modify_issue"
             )
 
+            div.attachments-header
+                h3.attachments-title Clockify
+
+            .clockify-buttons-containter(
+                tg-clockify-timer
+                start="Start issue"
+                stop="Stop current timer"
+                user-story="issue"
+                issue-project="project"
+            )
+
             tg-history-section(
                 ng-if="issue"
                 type="issue"
