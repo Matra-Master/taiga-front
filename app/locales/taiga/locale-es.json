@@ -1645,6 +1645,7 @@
                 "STATUS": "Estado",
                 "ATTACHMENTS": "Adjuntos",
                 "MODIFIED": "Modificado",
+                "CREATED_AT": "Creado",
                 "ASSIGNED_TO": "Asignada a"
             },
             "TITLE_ACTION_CHANGE_STATUS": "Cambio de estado",

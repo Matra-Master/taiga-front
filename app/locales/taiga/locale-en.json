@@ -1640,6 +1640,7 @@
                 "STATUS": "Status",
                 "ATTACHMENTS": "Attachments",
                 "MODIFIED": "Modified",
+                "CREATED_AT": "Created",
                 "ASSIGNED_TO": "Assign to"
             },
             "TITLE_ACTION_CHANGE_STATUS": "Change status",
