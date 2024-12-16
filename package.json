@@ -20,6 +20,8 @@
     "test": "./node_modules/karma/bin/karma start",
     "e2e": "./node_modules/.bin/babel-node run-e2e.js",
     "start": "npx gulp",
+    "watch": "npx gulp watch",
+    "build": "npx gulp deploy",
     "ci:test": "npx gulp deploy && ./node_modules/karma/bin/karma start --single-run --browsers=ChromeHeadlessCI"
   },
   "devDependencies": {
