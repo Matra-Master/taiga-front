@@ -1,23 +1,14 @@
 #PROD build attempt
-FROM node:16.19.1 AS install
+FROM node:16.20.2 AS install
 WORKDIR /usr/src/app
 COPY . .
 RUN rm package-lock.json && npm install
 RUN npx gulp deploy
 
-# This source code is licensed under the terms of the
-# GNU Affero General Public License found in the LICENSE file in
-# the root directory of this source tree.
-#
-# Copyright (c) 2021-present Kaleidos INC
-
 FROM nginx:1.23-alpine
-LABEL maintainer="support@taiga.io"
-
 COPY docker/default.conf /etc/nginx/conf.d/default.conf
 COPY docker/conf.json.template /
 COPY docker/config_env_subst.sh /docker-entrypoint.d/30_config_env_subst.sh
-
 RUN set -eux; \
     apk update; \
     apk add --no-cache --virtual .build-deps \
@@ -49,4 +40,4 @@ RUN set -eux; \
     apk del --no-cache .build-deps; \
     # Ready for nginx
     mv /taiga/dist/* /usr/share/nginx/html; \
-    rm -rf /taiga
+    rm -rf /taiga /var/cache/apk/*
