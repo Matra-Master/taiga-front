@@ -25,7 +25,7 @@ RUN set -eux; \
     apk add \
        bash; \
     mkdir taiga
-COPY --from=install /usr/src/app/dist /taiga/
+COPY --from=install /usr/src/app/dist /taiga/dist
 RUN set -eux; \
     mv /conf.json.template taiga/dist/; \
     chmod +x /docker-entrypoint.d/30_config_env_subst.sh; \
