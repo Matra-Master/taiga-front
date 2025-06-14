@@ -14,10 +14,12 @@ class CreatetProjectFormController
         "$location",
         "$tgNavUrls",
         "$tgAnalytics",
-        "$tgConfirm"
+        "$tgConfirm",
+        "$rootScope",
+        "$tgRepo"
    ]
 
-    constructor: (@currentUserService, @projectsService, @projectUrl, @location, @navUrls, @analytics,@confirmService) ->
+    constructor: (@currentUserService, @projectsService, @projectUrl, @location, @navUrls, @analytics,@confirmService, @rootscope, @repo) ->
         @.errorList = []
         @.projectForm = {
             is_private: false
@@ -49,6 +51,29 @@ class CreatetProjectFormController
                 @analytics.trackEvent("project", "create", "project creation", {slug: project.get('slug'), id: project.get('id')})
                 @location.url(@projectUrl.get(project))
                 @currentUserService.loadProjects()
+                id = project.get("id")
+                
+                linkAttr = {
+                    "name": "Evidencia (enlace)",
+                    "description": "",
+                    "type": "text",
+                    "project": id,
+                    "order": 1
+                }
+                attrImage = {
+                    "name": "Evidencia (imagen)",
+                    "description": "",
+                    "type": "richtext",
+                    "project": id,
+                    "order": 2
+                }
+
+                @.setCustomAttributes("userstory", linkAttr)
+                @.setCustomAttributes("userstory", attrImage)
+                @.setCustomAttributes("task", linkAttr)
+                @.setCustomAttributes("task", attrImage)
+                @.setCustomAttributes("issue", linkAttr)
+                @.setCustomAttributes("issue", attrImage)
 
     onCancelForm: () ->
         @location.path(@navUrls.resolve("create-project"))
@@ -61,5 +86,9 @@ class CreatetProjectFormController
 
     isDisabled: () ->
         return @.formSubmitLoading || !@.canCreateProject()
+
+    setCustomAttributes: (element, attrValues) ->
+        @repo.create("custom-attributes/"+element, attrValues).then =>
+            @rootscope.$broadcast("admin:project-custom-attributes:updated")
 
 angular.module('taigaProjects').controller('CreateProjectFormCtrl', CreatetProjectFormController)
