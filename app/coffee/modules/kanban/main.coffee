@@ -630,7 +630,11 @@ class KanbanController extends mixOf(taiga.Controller, taiga.PageMixin, taiga.Fi
             @.generateFilters()
             if @.isFilterDataTypeSelected('status')
                 @.filtersReloadContent()
-
+        .catch (error) ->
+            console.info(error)
+            alert error.data.bulk_userstories[0]
+            window.location.reload()
+            
 module.controller("KanbanController", KanbanController)
 
 #############################################################################
