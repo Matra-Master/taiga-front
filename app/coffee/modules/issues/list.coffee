@@ -563,7 +563,7 @@ module.directive("tgIssuesOrdering", ["$log", "$tgLocation", "$tgTemplate", "$co
 ## Issue status Directive (popover for change status)
 #############################################################################
 
-IssueStatusInlineEditionDirective = ($repo, $template, $rootscope) ->
+IssueStatusInlineEditionDirective = ($repo, $template, $rootscope, $tgConfirm) ->
     ###
     Print the status of an Issue and a popover to change it.
     - tg-issue-status-inline-edition: The issue
@@ -604,8 +604,6 @@ IssueStatusInlineEditionDirective = ($repo, $template, $rootscope) ->
 
             issue.status = target.data("status-id")
             $el.find(".pop-status").popover().close()
-            updateIssueStatus($el, issue, $scope.issueStatusById)
-
             attachments = issue.attachments
 
             $scope.$apply () ->
@@ -614,8 +612,11 @@ IssueStatusInlineEditionDirective = ($repo, $template, $rootscope) ->
                     issue._isModified = false
                     issue._attrs = _.extend(issue.getAttrs(), issue)
                     issue._modifiedAttrs = {}
+                    updateIssueStatus($el, issue, $scope.issueStatusById)
 
                     $rootscope.$broadcast("status:changed", response)
+                .catch (error)->
+                    $tgConfirm.notify("error", error.error)
 
         taiga.bindOnce $scope, "project", (project) ->
             $el.append(selectionTemplate({ 'statuses':  project.issue_statuses }))
@@ -634,7 +635,7 @@ IssueStatusInlineEditionDirective = ($repo, $template, $rootscope) ->
 
     return {link: link}
 
-module.directive("tgIssueStatusInlineEdition", ["$tgRepo", "$tgTemplate", "$rootScope",
+module.directive("tgIssueStatusInlineEdition", ["$tgRepo", "$tgTemplate", "$rootScope", "$tgConfirm",
                                                 IssueStatusInlineEditionDirective])
 
 
