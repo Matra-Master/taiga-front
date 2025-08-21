@@ -56,8 +56,8 @@ tg-lightbox-close
                 attachments="vm.attachments"
                 on-add="vm.addAttachment(attachment)"
             )
-        fieldset.clockify-fireworks-section(ng-if="vm.project.tracking_mode === 'epic'")
-            .clockify-label(for="epic-clockify-project-id") {{ 'EPICS.CREATE.CLOCKIFY_PROJECT_ID' | translate }}
+        fieldset(ng-if="vm.project.tracking_mode === 'epic'")
+            {{ 'EPICS.CREATE.CLOCKIFY_PROJECT_ID' | translate }}
             input.e2e-create-epic-clockify-id(
                 type="text"
                 id="epic-clockify-project-id"
