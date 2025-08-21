@@ -107,21 +107,7 @@ div.wrapper(
             required-perm="modify_epic"
         )
 
-        section.ticket-section.ticket-detail-settings
-            tg-us-team-requirement-button(ng-model="epic")
-            tg-us-client-requirement-button(ng-model="epic")
-            tg-block-button(
-                tg-check-permission="modify_epic",
-                ng-model="epic"
-            )
-            tg-delete-button(
-                tg-check-permission="delete_epic",
-                on-delete-title="{{'EPIC.ACTION_DELETE' | translate}}",
-                on-delete-go-to-url="onDeleteGoToUrl",
-                ng-model="epic"
-            )
-
-        section.clockify-project-settings(ng-if="project.tracking_mode === 'epic'")
+        section.clockify-project-settings.ticket-section(ng-if="project.tracking_mode === 'epic'")
             form(ng-submit="ctrl.saveClockifyProjectId()" novalidate)
                 label(for="epic-clockify-id") {{ 'EPICS.CLOCKIFY_PROJECT_ID' | translate }}
                 .input-group
@@ -142,5 +128,19 @@ div.wrapper(
                     )
                         span(ng-show="!ctrl.savingClockifyProjectId") {{ 'COMMON.SAVE' | translate }}
                         span(ng-show="ctrl.savingClockifyProjectId") {{ 'COMMON.SAVING' | translate }}
+
+        section.ticket-section.ticket-detail-settings
+            tg-us-team-requirement-button(ng-model="epic")
+            tg-us-client-requirement-button(ng-model="epic")
+            tg-block-button(
+                tg-check-permission="modify_epic",
+                ng-model="epic"
+            )
+            tg-delete-button(
+                tg-check-permission="delete_epic",
+                on-delete-title="{{'EPIC.ACTION_DELETE' | translate}}",
+                on-delete-go-to-url="onDeleteGoToUrl",
+                ng-model="epic"
+            )
 
     div.lightbox.lightbox-block(tg-lb-block, ng-model="epic", title="EPIC.LIGHTBOX_TITLE_BLOKING_EPIC")
