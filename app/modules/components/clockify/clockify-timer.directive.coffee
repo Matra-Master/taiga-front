@@ -16,13 +16,13 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
             if($scope.vm.issueProject)
                 tagIds = getTags($scope.vm.issueProject, userStory)
             project = $scope.$parent.$parent.project
-            clockifyKey = $currentUser.getUser().get("clockify_key")
+            uuid = $currentUser.getUser().get("uuid")
 
             subject = task?.subject || userStory?.subject || ""
             taskRef = task?.ref || ""
             usRef = task?.user_story_extra_info?.ref || userStory?.ref || ""
 
-            data = { subject, usRef, taskRef, tagIds, clockifyKey }
+            data = { subject, usRef, taskRef, tagIds, uuid }
 
             if project?.clockify_id
                 projectClockifyId = project.clockify_id
@@ -36,9 +36,9 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
                 confirmService.notify("error",err.data.error_message)
 
         $scope.stopTimer = () ->
-            clockifyKey = $currentUser.getUser().get("clockify_key")
+            uuid = $currentUser.getUser().get("uuid")
             
-            data = { clockifyKey }
+            data = { uuid }
             response = $http.post($tgUrls.resolve("user-stop-clocki"), data)
 
             response.then () =>
