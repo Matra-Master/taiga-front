@@ -16,17 +16,20 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
             if($scope.vm.issueProject)
                 tagIds = getTags($scope.vm.issueProject, userStory)
             project = $scope.$parent.$parent.project
-            clockifyKey = $currentUser.getUser().get("clockify_key")
+            uuid = $currentUser.getUser().get("uuid")
 
             subject = task?.subject || userStory?.subject || ""
             taskRef = task?.ref || ""
             usRef = task?.user_story_extra_info?.ref || userStory?.ref || ""
+            projectId = project?.id
+            epic = userStory?.epics[0]
 
-            data = { subject, usRef, taskRef, tagIds, clockifyKey }
+            data = { subject, usRef, taskRef, tagIds, uuid, projectId }
 
-            if project?.clockify_id
-                projectClockifyId = project.clockify_id
-                data = Object.assign({}, data, { projectClockifyId })
+            epic = userStory?.epics[0]
+            if project?.tracking_mode == "epic" && epic
+                epicId = epic.id
+                data = Object.assign({}, data, { epicId })
             response = $http.post($tgUrls.resolve("user-start-clocki"), data)
 
             response.then () =>
@@ -36,9 +39,9 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
                 confirmService.notify("error",err.data.error_message)
 
         $scope.stopTimer = () ->
-            clockifyKey = $currentUser.getUser().get("clockify_key")
+            uuid = $currentUser.getUser().get("uuid")
             
-            data = { clockifyKey }
+            data = { uuid }
             response = $http.post($tgUrls.resolve("user-stop-clocki"), data)
 
             response.then () =>
