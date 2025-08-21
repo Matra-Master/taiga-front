@@ -121,4 +121,26 @@ div.wrapper(
                 ng-model="epic"
             )
 
+        section.clockify-project-settings(ng-if="project.tracking_mode === 'epic'")
+            form(ng-submit="ctrl.saveClockifyProjectId()" novalidate)
+                label(for="epic-clockify-id") {{ 'EPICS.CLOCKIFY_PROJECT_ID' | translate }}
+                .input-group
+                    input(
+                        type="text"
+                        id="epic-clockify-id"
+                        ng-model="epic.clockify_project_id"
+                        placeholder="{{ 'EPICS.CLOCKIFY_PROJECT_ID_PLACEHOLDER' | translate }}"
+                        maxlength="36"
+                        tg-check-permission="modify_epic"
+                        ng-change="ctrl.onClockifyProjectIdChange()"
+                    )
+                button.save-clockify-btn(
+                        type="submit"
+                        ng-disabled="ctrl.savingClockifyProjectId"
+                        tg-check-permission="modify_epic"
+                        title="{{ 'EPICS.SAVE_CLOCKIFY_PROJECT_ID' | translate }}"
+                    )
+                        span(ng-show="!ctrl.savingClockifyProjectId") {{ 'COMMON.SAVE' | translate }}
+                        span(ng-show="ctrl.savingClockifyProjectId") {{ 'COMMON.SAVING' | translate }}
+
     div.lightbox.lightbox-block(tg-lb-block, ng-model="epic", title="EPIC.LIGHTBOX_TITLE_BLOKING_EPIC")

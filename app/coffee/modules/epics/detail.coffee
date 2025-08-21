@@ -50,6 +50,9 @@ class EpicDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
         @scope.epicRef = @params.epicref
         @scope.sectionName = @translate.instant("EPIC.SECTION_NAME")
         @scope.attachmentsReady = false
+        @scope.clockifyProjectIdChanged = false
+        @scope.savingClockifyProjectId = false
+        
         @scope.$on "attachments:loaded", () =>
             @scope.attachmentsReady = true
 
@@ -197,6 +200,27 @@ class EpicDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
             return epic
 
         return transform.then(onSelectColorSuccess, onSelectColorError)
+
+    onClockifyProjectIdChange: ->
+        @scope.clockifyProjectIdChanged = true
+
+    saveClockifyProjectId: ->
+        @scope.savingClockifyProjectId = true
+        
+        onSaveSuccess = () =>
+            @scope.clockifyProjectIdChanged = false
+            @scope.savingClockifyProjectId = false
+            @rootscope.$broadcast("object:updated")
+            @confirm.notify('success', @translate.instant('EPICS.CLOCKIFY_PROJECT_ID_SAVED'))
+
+        onSaveError = () =>
+            @scope.savingClockifyProjectId = false
+            @confirm.notify('error', @translate.instant('EPICS.CLOCKIFY_PROJECT_ID_SAVE_ERROR'))
+
+        transform = @modelTransform.save (epic) ->
+            return epic
+
+        return transform.then(onSaveSuccess, onSaveError)
 
 module.controller("EpicDetailController", EpicDetailController)
 

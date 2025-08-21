@@ -91,6 +91,16 @@ div.wrapper(
                     )
 
                 fieldset
+                    label(for="tracking-mode") {{ 'ADMIN.PROJECT_PROFILE.TRACKING_MODE' | translate }}
+                    select(
+                        id="tracking-mode"
+                        name="tracking_mode"
+                        ng-model="project.tracking_mode"
+                    )
+                        option(value="project") {{ 'ADMIN.PROJECT_PROFILE.TRACK_BY_PROJECT' | translate }}
+                        option(value="epic") {{ 'ADMIN.PROJECT_PROFILE.TRACK_BY_EPIC' | translate }}
+
+                fieldset
                     label(for="tags") {{ 'ADMIN.PROJECT_PROFILE.TAGS' | translate }}
 
                     tg-tag-line-common.tags-block(
