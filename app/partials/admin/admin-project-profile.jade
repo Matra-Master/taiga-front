@@ -78,7 +78,7 @@ div.wrapper(
                         ng-model="project.description"
                         data-required="true"
                     )
-                fieldset
+                fieldset(ng-if="project.tracking_mode === 'project'")
                     label(for="project-clockify-id") {{ 'ADMIN.PROJECT_PROFILE.PROJECT_CLOCKIFY_ID' | translate }}
                     input(
                         type="text"
@@ -86,7 +86,6 @@ div.wrapper(
                         placeholder="{{'ADMIN.PROJECT_PROFILE.PROJECT_CLOCKIFY_ID' | translate}}"
                         id="project-clockify-id"
                         ng-model="project.clockify_id"
-                        data-required="true"
                         maxlength="36"
                     )
 
