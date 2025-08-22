@@ -1,7 +1,7 @@
 .epic-header-container {
     display: flex;
     .color-selector {
-        margin-right: 0.5rem;
+        margin-right: .5rem;
     }
     tg-detail-header {
         flex: 1;
@@ -12,10 +12,10 @@
 .epic-selector {
     align-items: center;
     display: flex;
-    margin: 0.25rem 0;
+    margin: .25rem 0;
 
     .epic-selector-text {
-        margin-right: 0.5rem;
+        margin-right: .5rem;
     }
 }
 
@@ -23,38 +23,38 @@
     margin: 16px 0;
 
     label {
+        color: $grey-70;
         display: block;
-        font-weight: 600;
-        color: #495057;
-        margin-bottom: 8px;
         font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
     }
 
     input {
-        width: 100%;
-        padding: 12px 16px;
-        border: 2px solid #dee2e6;
+        background: $white;
+        border: 2px solid $grey-10;
         border-radius: 8px;
         font-size: 14px;
-        background: #ffffff;
-        transition: all 0.3s ease;
+        padding: 12px 16px;
+        transition: all .3s ease;
+        width: 100%;
 
         &:focus {
+            border-color: $clockify-light-blue;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, .1);
             outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
         }
 
         &::placeholder {
-            color: #6c757d;
+            color: $grey-50;
             font-style: italic;
         }
     }
 
     .input-group {
+        align-items: stretch;
         display: flex;
         gap: 12px;
-        align-items: stretch;
 
         input {
             flex: 1;
@@ -74,8 +74,8 @@
         justify-content: center;
         margin-top: 8px;
         min-width: 80px;
-        padding: 0.75rem;
-        transition: all 0.3s ease;
+        padding: .75rem;
+        transition: all .3s ease;
         white-space: nowrap;
 
         &:hover:not(:disabled) {
@@ -85,14 +85,14 @@
 
         &:disabled {
             background-color: $color-gray400;
-            color: rgba($color-black900, 0.5);
+            color: rgba($color-black900, .5);
             cursor: not-allowed;
-            opacity: 0.5;
+            opacity: .5;
             pointer-events: none;
         }
 
         &:focus {
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, .2);
             outline: none;
         }
     }
