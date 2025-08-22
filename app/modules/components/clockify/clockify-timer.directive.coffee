@@ -22,12 +22,12 @@ ClockifyTimerDirective = ($http, $currentUser, $tgUrls, confirmService, $transla
             taskRef = task?.ref || ""
             usRef = task?.user_story_extra_info?.ref || userStory?.ref || ""
             projectId = project?.id
-            epics = userStory?.epics || task.user_story_extra_info.epics
-            epic = epics[0]
+            epics = userStory?.epics || task?.user_story_extra_info?.epics
 
             data = { subject, usRef, taskRef, tagIds, uuid, projectId }
 
-            if project?.tracking_mode == "epic" && epic
+            if project?.tracking_mode == "epic" && epics?.length > 0
+                epic = epics[0]
                 epicId = epic.id
                 data = Object.assign({}, data, { epicId })
             response = $http.post($tgUrls.resolve("user-start-clocki"), data)
