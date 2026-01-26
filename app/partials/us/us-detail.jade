@@ -212,6 +212,16 @@ div.wrapper(
                 tg-check-permission="modify_us"
                 ng-model="us"
             )
+            a.btn-small(
+                        variant="secondary"
+                        href=""
+                        tg-check-permission="add_us"
+                        ng-click="cloneUs()"
+                        title="{{'US.TITLE_CLONE' | translate}}"
+                    )
+                        tg-svg(
+                            svg-icon="icon-duplicate"
+                        )
             tg-delete-button(
                 tg-check-permission="delete_us"
                 on-delete-title="{{'Delete User Story' | translate}}"

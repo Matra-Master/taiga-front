@@ -1352,6 +1352,10 @@
         "OWNER_US": "This user story belongs to",
         "RELATE_TO_EPIC": "Link to epic",
         "REMOVE_RELATIONSHIP_WITH_EPIC": "Remove epic relationship",
+        "CLONE": "Clone",
+        "TITLE_CLONE": "Clone user story",
+        "CLONE_SUCCESS": "User story cloned successfully",
+        "CLONE_ERROR": "Error cloning user story",
         "TRIBE": {
             "PUBLISH": "Publish as Gig in Taiga Tribe",
             "PUBLISH_INFO": "More info",

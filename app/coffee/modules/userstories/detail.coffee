@@ -100,6 +100,9 @@ class UserStoryDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
         @scope.relateToEpic = (us) =>
             @scope.$broadcast("relate-to-epic:add", us)
 
+        @scope.cloneUs = () =>
+            @.cloneUs()
+
         @scope.$on "related-tasks:update", =>
             @.loadTasks()
             @scope.tasks = _.clone(@scope.tasks, false)
@@ -275,6 +278,16 @@ class UserStoryDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
         text = @translate.instant("US.TRIBE.PUBLISH_MORE_INFO_TEXT")
         publishDesc = $('<div></div>').append(image).append(text)
         @confirm.success(publishTitle, publishDesc)
+
+    cloneUs: ->
+        onSuccess = (clonedUs) =>
+            @analytics.trackEvent("userstory", "clone", "clone userstory on detail", 1)
+            @confirm.notify("success", @translate.instant("US.CLONE_SUCCESS"))
+        
+        onError = =>
+            @confirm.notify("error", @translate.instant("US.CLONE_ERROR"))
+        
+        return @repo.clone("userstories", {id: @scope.usId}).then(onSuccess, onError)
 
     reorderTask: (task, newIndex) ->
         orderList = {}
