@@ -1019,7 +1019,7 @@ module.directive("tgCardData", [
     CardDataDirective])
 
 
-CardActionsDirective = ($template, $translate, projectService) ->
+CardActionsDirective = ($template, $translate, projectService, $navUrls) ->
     template = $template.get("components/card/card-templates/card-actions.html", true)
     svgTemplate  = _.template(CardSvgTemplate)
 
@@ -1095,10 +1095,11 @@ CardActionsDirective = ($template, $translate, projectService) ->
                             text: $translate.instant('COMMON.CARD.COPY_TG_URL'),
                             icon: 'icon-clipboard-url',
                             event: () ->
-                                 currentPath = window.location.href
-                                 cardRef = $scope.vm.item.getIn(['model', 'ref'])
-                                 currentPath = currentPath.split("/kanban")[0] + "/us/" + cardRef
-                                 navigator.clipboard.writeText(currentPath)
+                                 cardLink = $(event.currentTarget).closest('.card-inner').find('.card-title a')
+                                 if cardLink.length
+                                     cardPath = cardLink.attr('href')
+                                     fullUrl = window.location.origin + '/' + cardPath
+                                     navigator.clipboard.writeText(fullUrl)
                         },
                     )
 
