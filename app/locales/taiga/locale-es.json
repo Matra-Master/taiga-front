@@ -1349,6 +1349,10 @@
         "OWNER_US": "Esta historia de usuario pertenece a",
         "RELATE_TO_EPIC": "Enlace a épica",
         "REMOVE_RELATIONSHIP_WITH_EPIC": "Quitar relación con épica",
+        "CLONE": "Clonar",
+        "TITLE_CLONE": "Clonar historia de usuario",
+        "CLONE_SUCCESS": "Historia de usuario clonada correctamente",
+        "CLONE_ERROR": "Error al clonar la historia de usuario",
         "TRIBE": {
             "PUBLISH": "Publicar como Gig en la Tribu Taiga",
             "PUBLISH_INFO": "Mas información",
