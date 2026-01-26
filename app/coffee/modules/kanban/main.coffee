@@ -1096,6 +1096,8 @@ CardActionsDirective = ($template, $translate, projectService) ->
                             icon: 'icon-clipboard-url',
                             event: () ->
                                  currentPath = window.location.href
+                                 cardRef = $scope.vm.item.getIn(['model', 'ref'])
+                                 currentPath = currentPath.split("/kanban")[0] + "/us/" + cardRef
                                  navigator.clipboard.writeText(currentPath)
                         },
                     )
