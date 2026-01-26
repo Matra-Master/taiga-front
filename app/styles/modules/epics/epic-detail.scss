@@ -18,3 +18,82 @@
         margin-right: .5rem;
     }
 }
+
+.clockify-project-settings {
+    margin: 16px 0;
+
+    label {
+        color: $grey-70;
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    input {
+        background: $white;
+        border: 2px solid $grey-10;
+        border-radius: 8px;
+        font-size: 14px;
+        padding: 12px 16px;
+        transition: all .3s ease;
+        width: 100%;
+
+        &:focus {
+            border-color: $clockify-light-blue;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, .1);
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $grey-50;
+            font-style: italic;
+        }
+    }
+
+    .input-group {
+        align-items: stretch;
+        display: flex;
+        gap: 12px;
+
+        input {
+            flex: 1;
+        }
+    }
+
+    .save-clockify-btn {
+        align-items: center;
+        background: $color-gray200;
+        border: none;
+        border-radius: 4px;
+        color: $color-link-primary;
+        cursor: pointer;
+        display: flex;
+        font-size: 14px;
+        font-weight: 600;
+        justify-content: center;
+        margin-top: 8px;
+        min-width: 80px;
+        padding: .75rem;
+        transition: all .3s ease;
+        white-space: nowrap;
+
+        &:hover:not(:disabled) {
+            background: $color-gray400;
+            color: $color-link-tertiary;
+        }
+
+        &:disabled {
+            background-color: $color-gray400;
+            color: rgba($color-black900, .5);
+            cursor: not-allowed;
+            opacity: .5;
+            pointer-events: none;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, .2);
+            outline: none;
+        }
+    }
+}

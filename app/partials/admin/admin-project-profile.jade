@@ -78,7 +78,7 @@ div.wrapper(
                         ng-model="project.description"
                         data-required="true"
                     )
-                fieldset
+                fieldset(ng-if="project.tracking_mode === 'project'")
                     label(for="project-clockify-id") {{ 'ADMIN.PROJECT_PROFILE.PROJECT_CLOCKIFY_ID' | translate }}
                     input(
                         type="text"
@@ -86,9 +86,18 @@ div.wrapper(
                         placeholder="{{'ADMIN.PROJECT_PROFILE.PROJECT_CLOCKIFY_ID' | translate}}"
                         id="project-clockify-id"
                         ng-model="project.clockify_id"
-                        data-required="true"
                         maxlength="36"
                     )
+
+                fieldset
+                    label(for="tracking-mode") {{ 'ADMIN.PROJECT_PROFILE.TRACKING_MODE' | translate }}
+                    select(
+                        id="tracking-mode"
+                        name="tracking_mode"
+                        ng-model="project.tracking_mode"
+                    )
+                        option(value="project") {{ 'ADMIN.PROJECT_PROFILE.TRACK_BY_PROJECT' | translate }}
+                        option(value="epic") {{ 'ADMIN.PROJECT_PROFILE.TRACK_BY_EPIC' | translate }}
 
                 fieldset
                     label(for="tags") {{ 'ADMIN.PROJECT_PROFILE.TAGS' | translate }}

@@ -37,6 +37,7 @@
     .attachments {
         margin-bottom: 0;
     }
+
     .settings {
         display: flex;
         justify-content: center;
@@ -53,12 +54,12 @@
         }
         input {
             display: none;
-            &:checked+label {
+            &:checked + label {
                 background: $color-link-primary;
                 border: 1px solid $color-link-primary;
                 color: $white;
             }
-            &:checked+.blocked {
+            &:checked + .blocked {
                 background: $color-link-red;
                 border: 1px solid $color-link-red;
                 color: $color-white;

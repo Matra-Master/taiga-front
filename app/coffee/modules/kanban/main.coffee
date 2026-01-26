@@ -1021,7 +1021,7 @@ module.directive("tgCardData", [
     CardDataDirective])
 
 
-CardActionsDirective = ($template, $translate, projectService) ->
+CardActionsDirective = ($template, $translate, projectService, $navUrls) ->
     template = $template.get("components/card/card-templates/card-actions.html", true)
     svgTemplate  = _.template(CardSvgTemplate)
 
@@ -1108,10 +1108,11 @@ CardActionsDirective = ($template, $translate, projectService) ->
                             text: $translate.instant('COMMON.CARD.CLONE'),
                             icon: 'icon-duplicate',
                             event: () ->
-                                 storyId = $scope.vm.item.getIn(['model','id'])
-                                 console.info(storyId)
-                                 console.info($scope.vm)
-                                 $scope.vm.onClickClone({id: $scope.vm.item.get('id')})
+                                 cardLink = $(event.currentTarget).closest('.card-inner').find('.card-title a')
+                                 if cardLink.length
+                                    cardPath = cardLink.attr('href')
+                                    fullUrl = window.location.origin + '/' + cardPath
+                                    navigator.clipboard.writeText(fullUrl)
                         },
                     )
 
