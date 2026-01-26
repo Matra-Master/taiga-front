@@ -19,6 +19,7 @@ cardDirective = () ->
             onClickEdit: "&",
             onClickRemove: "&",
             onClickDelete: "&",
+            onClickClone: "&",
             onClickMoveToTop: "&",
             project: "<",
             item: "<",

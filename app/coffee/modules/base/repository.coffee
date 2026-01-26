@@ -33,6 +33,17 @@ class RepositoryService extends taiga.Service
             defered.reject(data)
 
         return defered.promise
+    
+    clone: (name, model) ->
+        defered = @q.defer()
+        url = @urls.resolve(name)
+        
+        promise = @http.post(url+"/"+model.id+"/clone")
+        promise.success (_data, _status) =>
+            defered.resolve(@model.make_model(model, _data, null, {}))
+
+        promise.error (data, status) =>
+            defered.reject(data)
 
     remove: (model, params={}) ->
         defered = @q.defer()

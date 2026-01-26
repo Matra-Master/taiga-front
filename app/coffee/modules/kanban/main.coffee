@@ -312,6 +312,8 @@ class KanbanController extends mixOf(taiga.Controller, taiga.PageMixin, taiga.Fi
                 promise.then null, ->
                     askResponse.finish(false)
                     @confirm.notify("error")
+    cloneUs: (id) ->
+        @repo.clone("userstories", {id})
 
     showPlaceHolder: (statusId, swimlaneId) ->
         firstStatus = @scope.usStatusList[0].id == statusId && !@kanbanUserstoriesService.userstoriesRaw.length
@@ -1095,8 +1097,21 @@ CardActionsDirective = ($template, $translate, projectService) ->
                             text: $translate.instant('COMMON.CARD.COPY_TG_URL'),
                             icon: 'icon-clipboard-url',
                             event: () ->
-                                 currentPath = window.location.href
-                                 navigator.clipboard.writeText(currentPath)
+                                 kanbanPath = window.location.href
+                                 usPath = kanbanPath.split("kanban")[0] + "us/" + $scope.vm.item.getIn(['model', 'ref'])                                 
+                                 navigator.clipboard.writeText(usPath)
+                        },
+                    )
+
+                    actions.push(
+                        {
+                            text: $translate.instant('COMMON.CARD.CLONE'),
+                            icon: 'icon-duplicate',
+                            event: () ->
+                                 storyId = $scope.vm.item.getIn(['model','id'])
+                                 console.info(storyId)
+                                 console.info($scope.vm)
+                                 $scope.vm.onClickClone({id: $scope.vm.item.get('id')})
                         },
                     )
 
