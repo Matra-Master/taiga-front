@@ -1,7 +1,7 @@
 #PROD build attempt
 FROM node:16.20.2 AS install
 WORKDIR /usr/src/app
-COPY . .
+COPY --exclude="docker/*.zip" . .
 RUN rm package-lock.json && npm install
 RUN npx gulp deploy
 
@@ -22,19 +22,23 @@ RUN set -eux; \
     chmod +x /docker-entrypoint.d/30_config_env_subst.sh; \
     # Install taiga-front contribs
     mkdir /taiga/dist/plugins; \
-    cd /taiga/dist/plugins; \
+    cd /taiga/dist/plugins;
     # Slack
-    wget https://github.com/taigaio/taiga-contrib-slack/archive/6.8.0.zip -O source.zip; \
+COPY docker/taiga-contrib-slack-6.8.0.zip source.zip
+RUN set -eux; \
     unzip -j source.zip "taiga-contrib-slack-6.8.0/front/dist/*" -d slack; \
-    rm source.zip; \
+    rm source.zip;
     # Github
-    wget http://github.com/taigaio/taiga-contrib-github-auth/archive/6.8.0.zip -O source.zip; \
+COPY docker/taiga-contrib-github-auth-6.8.0.zip source.zip
+RUN set -eux; \
     unzip -j source.zip "taiga-contrib-github-auth-6.8.0/front/dist/*" -d github-auth; \
-    rm source.zip; \
+    rm source.zip;
     # Gitlab
-    wget http://github.com/taigaio/taiga-contrib-gitlab-auth/archive/6.8.0.zip -O source.zip; \
+COPY docker/taiga-contrib-gitlab-auth-6.8.0.zip source.zip
+RUN set -eux; \
     unzip -j source.zip "taiga-contrib-gitlab-auth-6.8.0/front/dist/*" -d gitlab-auth; \
-    rm source.zip; \
+    rm source.zip;
+RUN set -eux; \
     cd /; \
     # Remove unused dependencies
     apk del --no-cache .build-deps; \
