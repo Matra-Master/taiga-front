@@ -1361,6 +1361,8 @@
         "TITLE_CLONE": "Clonar historia de usuario",
         "CLONE_SUCCESS": "Historia de usuario clonada correctamente",
         "CLONE_ERROR": "Error al clonar la historia de usuario",
+        "PULL_REQUESTS": "Pull Requests",
+        "PULL_REQUEST_MERGED": "Mergeado",
         "TRIBE": {
             "PUBLISH": "Publicar como Gig en la Tribu Taiga",
             "PUBLISH_INFO": "Mas información",

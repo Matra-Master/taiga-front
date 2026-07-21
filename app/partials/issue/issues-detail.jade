@@ -180,4 +180,24 @@ div.wrapper(
                 ng-model="issue"
             )
 
+        section.ticket-section.ticket-pull-requests(ng-if="issue.pull_requests && issue.pull_requests.length")
+            .ticket-section-label
+                span(translate="US.PULL_REQUESTS")
+            .pr-list
+                a.pr-item(
+                    ng-repeat="pr in issue.pull_requests"
+                    href="{{pr.pull_request_url}}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                )
+                    .pr-branch
+                        span {{pr.branch_name}}
+                    .pr-repository
+                        span {{pr.repository}}
+                    .pr-meta
+                        span.pr-merged-by(ng-if="pr.merged_by") {{pr.merged_by}}
+                        span.pr-separator(ng-if="pr.merged_by && pr.merged_at") ·
+                        span.pr-date(ng-if="pr.merged_at") {{pr.merged_at | date:'medium'}}
+                        span.pr-merged-pill(ng-if="pr.merged_at") {{'US.PULL_REQUEST_MERGED' | translate}}
+
     div.lightbox.lightbox-block(tg-lb-block, ng-model="issue", title="ISSUES.LIGHTBOX_TITLE_BLOKING_ISSUE")
