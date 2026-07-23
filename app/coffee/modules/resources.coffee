@@ -186,6 +186,10 @@ urls = {
     "webhooklogs": "/webhooklogs"
     "webhooklogs-resend": "/webhooklogs/%s/resend"
 
+    # Changelog
+    "changelog-repositories": "/changelog-repositories"
+    "changelog-entries": "/changelog-entries"
+
     # Reports - CSV
     "epics-csv": "/epics/csv?uuid=%s"
     "userstories-csv": "/userstories/csv?uuid=%s"
@@ -288,6 +292,7 @@ module.run([
     "$tgModulesResourcesProvider",
     "$tgWebhooksResourcesProvider",
     "$tgWebhookLogsResourcesProvider",
+    "$tgChangelogResourcesProvider",
     "$tgLocalesResourcesProvider",
     "$tgUsersResourcesProvider",
     initResources

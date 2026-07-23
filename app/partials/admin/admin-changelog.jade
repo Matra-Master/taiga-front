@@ -1,0 +1,117 @@
+
+//- This source code is licensed under the terms of the
+//- GNU Affero General Public License found in the LICENSE file in
+//- the root directory of this source tree.
+//-
+//- Copyright (c) 2021-present Kaleidos INC
+
+doctype html
+
+div.wrapper(
+    ng-controller="ChangelogAdminController as ctrl"
+    ng-init="section='admin'"
+)
+    tg-project-menu
+
+    sidebar.menu-secondary.sidebar.settings-nav(tg-admin-navigation="project-profile")
+        include ../includes/modules/admin-menu
+    sidebar.menu-tertiary.sidebar(tg-admin-navigation="changelog")
+        include ../includes/modules/admin-submenu-project-profile
+
+    section.main.admin-common.admin-changelog(tg-new-changelog-repository)
+        header.header-with-actions
+            include ../includes/components/mainTitle
+            .action-buttons
+                button.btn-small.hidden.add-changelog-repository(
+                    variant="primary"
+                    title="{{'ADMIN.CHANGELOG.ADD_NEW' | translate}}"
+                    translate="ADMIN.CHANGELOG.ADD_NEW"
+                )
+
+        p.changelog-help(translate="ADMIN.CHANGELOG.HELP")
+
+        section.changelog-repositories-table.basic-table
+            .table-header
+                .row
+                    .repository-full-name(translate="ADMIN.CHANGELOG.REPOSITORY")
+                    .repository-branches(translate="ADMIN.CHANGELOG.BRANCHES")
+                    .repository-options
+            .table-body
+                .single-changelog-repository-wrapper(
+                    tg-changelog-repository="repository"
+                    ng-repeat="repository in repositories"
+                )
+                    .edition-mode.hidden
+                        form.row
+                            fieldset.repository-full-name
+                                input(
+                                    type="text"
+                                    name="full_name"
+                                    data-required="true"
+                                    ng-model="repository.full_name"
+                                    placeholder="{{'ADMIN.CHANGELOG.TYPE_REPOSITORY' | translate}}"
+                                )
+                            fieldset.repository-branches
+                                input(
+                                    type="text"
+                                    name="branches"
+                                    tg-changelog-branches
+                                    ng-model="repository.branches"
+                                    placeholder="{{'ADMIN.CHANGELOG.TYPE_BRANCHES' | translate}}"
+                                )
+                            .repository-options
+                                a.edit-existing(
+                                    href=""
+                                    title="{{'ADMIN.CHANGELOG.SAVE' | translate}}"
+                                )
+                                    tg-svg(svg-icon="icon-check-empty")
+                                a.cancel-existing(
+                                    href=""
+                                    title="{{'ADMIN.CHANGELOG.CANCEL' | translate}}"
+                                )
+                                    tg-svg(svg-icon="icon-close")
+
+                    .visualization-mode
+                        .row
+                            .repository-full-name(ng-bind="repository.full_name")
+                            .repository-branches(ng-bind="repository.branches.join(', ')")
+                            .repository-options
+                                a.edit-changelog-repository(
+                                    href=""
+                                    title="{{'ADMIN.CHANGELOG.EDIT' | translate}}"
+                                )
+                                    tg-svg(svg-icon="icon-edit")
+                                a.delete-changelog-repository(
+                                    href=""
+                                    title="{{'ADMIN.CHANGELOG.DELETE' | translate}}"
+                                )
+                                    tg-svg(svg-icon="icon-trash")
+
+                form.new-changelog-repository-form.row.hidden
+                    fieldset.repository-full-name
+                        input(
+                            type="text"
+                            name="full_name"
+                            data-required="true"
+                            ng-model="newValue.full_name"
+                            placeholder="{{'ADMIN.CHANGELOG.TYPE_REPOSITORY' | translate}}"
+                        )
+                    fieldset.repository-branches
+                        input(
+                            type="text"
+                            name="branches"
+                            tg-changelog-branches
+                            ng-model="newValue.branches"
+                            placeholder="{{'ADMIN.CHANGELOG.TYPE_BRANCHES' | translate}}"
+                        )
+                    .repository-options
+                        a.add-new(
+                            href=""
+                            title="{{'ADMIN.CHANGELOG.SAVE' | translate}}"
+                        )
+                            tg-svg(svg-icon="icon-check-empty")
+                        a.cancel-new(
+                            href=""
+                            title="{{'ADMIN.CHANGELOG.CANCEL' | translate}}"
+                        )
+                            tg-svg(svg-icon="icon-close")

@@ -1,0 +1,45 @@
+
+//- This source code is licensed under the terms of the
+//- GNU Affero General Public License found in the LICENSE file in
+//- the root directory of this source tree.
+//-
+//- Copyright (c) 2021-present Kaleidos INC
+
+doctype html
+
+div.wrapper(
+    ng-controller="ChangelogController as ctrl"
+    ng-init="section='changelog'"
+)
+    tg-project-menu
+
+    section.main.changelog
+        header
+            include ../includes/components/mainTitle
+
+        .changelog-empty(ng-if="entries.length == 0")
+            p(translate="CHANGELOG.EMPTY")
+
+        .changelog-entries(ng-if="entries.length")
+            .changelog-entry(ng-repeat="entry in entries")
+                .changelog-entry-header
+                    span.changelog-entry-repository(ng-bind="repositoriesById[entry.repository]")
+                    span.changelog-entry-branch(ng-bind="entry.branch")
+                    span.changelog-entry-date(ng-bind="entry.created_date | date:'medium'")
+                    span.changelog-entry-pusher(
+                        ng-if="entry.pusher_name"
+                        translate="CHANGELOG.PUSHED_BY"
+                        translate-values="{pusher: entry.pusher_name}"
+                    )
+                    a.changelog-entry-compare(
+                        href="{{entry.compare_url}}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        translate="CHANGELOG.VIEW_DIFF"
+                    )
+
+                ul.changelog-entry-commits
+                    li(ng-repeat="commit in entry.commits")
+                        a(href="{{commit.url}}" target="_blank" rel="noopener noreferrer")
+                            span.commit-message(ng-bind="commit.message")
+                        span.commit-author(ng-if="commit.author_name") — {{commit.author_name}}

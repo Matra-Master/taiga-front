@@ -1,0 +1,55 @@
+.changelog {
+    .changelog-empty {
+        color: $gray-light;
+        padding: 2rem 0;
+        text-align: center;
+    }
+
+    .changelog-entry {
+        border-bottom: 1px solid $whitish;
+        padding: 1rem 0;
+    }
+
+    .changelog-entry-header {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        margin-bottom: .5rem;
+
+        .changelog-entry-repository {
+            @include font-type(medium);
+        }
+        .changelog-entry-branch {
+            background: $whitish;
+            border-radius: 3px;
+            color: $gray;
+            font-family: monospace;
+            padding: 0 .4rem;
+        }
+        .changelog-entry-date,
+        .changelog-entry-pusher {
+            color: $gray-light;
+        }
+        .changelog-entry-compare {
+            color: $color-link-primary;
+            margin-left: auto;
+        }
+    }
+
+    .changelog-entry-commits {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            padding: .2rem 0;
+        }
+        .commit-message {
+            color: $color-link-primary;
+        }
+        .commit-author {
+            color: $gray-light;
+        }
+    }
+}

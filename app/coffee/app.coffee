@@ -295,6 +295,15 @@ configure = ($routeProvider, $locationProvider, $httpProvider, $provide, $tgEven
         }
     )
 
+    # Changelog
+    $routeProvider.when("/project/:pslug/changelog",
+        {
+            templateUrl: "changelog/changelog.html",
+            loader: true,
+            section: "changelog"
+        }
+    )
+
     # Issues
     $routeProvider.when("/project/:pslug/issues",
         {
@@ -327,6 +336,12 @@ configure = ($routeProvider, $locationProvider, $httpProvider, $provide, $tgEven
     $routeProvider.when("/project/:pslug/admin/project-profile/modules",
         {
             templateUrl: "admin/admin-project-modules.html",
+            section: "admin"
+        }
+    )
+    $routeProvider.when("/project/:pslug/admin/project-profile/changelog",
+        {
+            templateUrl: "admin/admin-changelog.html",
             section: "admin"
         }
     )
@@ -1087,6 +1102,7 @@ modules = [
     "taigaNotifications",
     "taigaWikiHistory",
     "taigaEpics",
+    "taigaChangelog",
     "taigaUtils"
 
     # template cache

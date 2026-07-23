@@ -77,6 +77,8 @@ urls = {
     "project-wiki-list": "/project/:project/wiki-list"
     "project-wiki-page": "/project/:project/wiki/:slug"
 
+    "project-changelog": "/project/:project/changelog"
+
     # Team
     "project-team": "/project/:project/team"
 
@@ -85,6 +87,7 @@ urls = {
     "project-admin-project-profile-details": "/project/:project/admin/project-profile/details"
     "project-admin-project-profile-default-values": "/project/:project/admin/project-profile/default-values"
     "project-admin-project-profile-modules": "/project/:project/admin/project-profile/modules"
+    "project-admin-project-profile-changelog": "/project/:project/admin/project-profile/changelog"
     "project-admin-project-profile-export": "/project/:project/admin/project-profile/export"
     "project-admin-project-profile-reports": "/project/:project/admin/project-profile/reports"
 

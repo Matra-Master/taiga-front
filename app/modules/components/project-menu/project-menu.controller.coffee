@@ -56,7 +56,8 @@ class ProjectMenuController
             backlog: false,
             kanban: false,
             issues: false,
-            wiki: false
+            wiki: false,
+            changelog: false
         })
 
         if @.project.get("is_epics_activated") && @.project.get("my_permissions").indexOf("view_epics") != -1
@@ -73,6 +74,11 @@ class ProjectMenuController
 
         if @.project.get("is_wiki_activated") && @.project.get("my_permissions").indexOf("view_wiki_pages") != -1
             @.menu = @.menu.set("wiki", true)
+
+        # No dedicated "view_changelog" permission (see taiga.changelog.permissions
+        # on the backend): any project member can see it once the admin turns it on.
+        if @.project.get("is_changelog_activated")
+            @.menu = @.menu.set("changelog", true)
 
     _getActiveSection: () ->
         sectionName = @projectService.section

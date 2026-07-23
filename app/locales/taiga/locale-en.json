@@ -539,6 +539,8 @@
             "KANBAN_DESCRIPTION": "Organize your project in a lean way with this board.",
             "ISSUES": "Issues",
             "ISSUES_DESCRIPTION": "Track the bugs, questions and enhancements related to your project. Don't miss anything!",
+            "CHANGELOG": "Changelog",
+            "CHANGELOG_DESCRIPTION": "Automatically track merges and releases pushed to the branches configured in Admin > Changelog.",
             "WIKI": "Wiki",
             "WIKI_DESCRIPTION": "Add, modify, or delete content in collaboration with others. This is the right place for your project's documentation.",
             "MEETUP": "Meet Up",
@@ -764,6 +766,22 @@
             "ACTION_SHOW_HISTORY": "(Show history)",
             "ACTION_SHOW_HISTORY_TITLE": "Show history details",
             "WEBHOOK_NAME": "Webhook '{{name}}'"
+        },
+        "CHANGELOG": {
+            "TITLE": "Changelog",
+            "PAGE_TITLE": "Changelog - {{projectName}}",
+            "SECTION_NAME": "Changelog",
+            "HELP": "Configure which GitHub repositories and branches are of interest. Every push to one of these branches is recorded here automatically, whether or not the Changelog module is visible to the team.",
+            "ADD_NEW": "Add a New Repository",
+            "REPOSITORY": "Repository",
+            "BRANCHES": "Branches",
+            "TYPE_REPOSITORY": "Type the repository full name, e.g. \"my-org/my-repo\"",
+            "TYPE_BRANCHES": "Type branch names separated by commas, e.g. \"main, release\"",
+            "SAVE": "Save",
+            "CANCEL": "Cancel",
+            "EDIT": "Edit",
+            "DELETE": "Delete",
+            "REPOSITORY_NAME": "Repository '{{name}}'"
         },
         "CUSTOM_ATTRIBUTES": {
             "PAGE_TITLE": "{{sectionName}} - Custom Attributes - {{projectName}}",
@@ -1703,6 +1721,13 @@
         "TITLE_ACTION_SEARCH": "search",
         "EMPTY_TITLE": "It looks like nothing was found with your search criteria.",
         "EMPTY_DESCRIPTION": "Maybe try one of the tabs above or search again"
+    },
+    "CHANGELOG": {
+        "PAGE_TITLE": "Changelog - {{projectName}}",
+        "SECTION_NAME": "Changelog",
+        "EMPTY": "Nothing recorded yet. Once a configured repository/branch receives a push, it will show up here.",
+        "PUSHED_BY": "pushed by {{pusher}}",
+        "VIEW_DIFF": "View diff"
     },
     "TEAM": {
         "PAGE_TITLE": "Team - {{projectName}}",
