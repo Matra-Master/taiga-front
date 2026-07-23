@@ -16,29 +16,13 @@ div.wrapper(
     section.main.changelog
         header
             include ../includes/components/mainTitle
-
+        
         .changelog-filters
+            .changelog-filters-label
+                tg-svg(svg-icon="icon-filters")
+                span(translate="CHANGELOG.FILTERS_LABEL")    
             .changelog-filters-fields
-                .changelog-filters-label
-                    tg-svg(svg-icon="icon-filters")
-                    span(translate="CHANGELOG.FILTERS_LABEL")
-
-                label.changelog-filter
-                    span.changelog-filter-label(translate="CHANGELOG.FILTER_DATE_FROM")
-                    input.changelog-filter-date.changelog-filter-date-from(
-                        type="text"
-                        tg-date-selector
-                        picker-value="{{filterDateFrom}}"
-                    )
-
-                label.changelog-filter
-                    span.changelog-filter-label(translate="CHANGELOG.FILTER_DATE_TO")
-                    input.changelog-filter-date.changelog-filter-date-to(
-                        type="text"
-                        tg-date-selector
-                        picker-value="{{filterDateTo}}"
-                    )
-
+                
                 label.changelog-filter
                     span.changelog-filter-label(translate="CHANGELOG.FILTER_BRANCH")
                     select(
@@ -64,6 +48,24 @@ div.wrapper(
                             value="{{repository.id}}"
                             ng-bind="repository.full_name"
                         )
+
+                label.changelog-filter
+                    span.changelog-filter-label(translate="CHANGELOG.FILTER_DATE_FROM")
+                    input.changelog-filter-date.changelog-filter-date-from(
+                        type="text"
+                        tg-date-selector
+                        picker-value="{{filterDateFrom}}"
+                    )
+
+                label.changelog-filter
+                    span.changelog-filter-label(translate="CHANGELOG.FILTER_DATE_TO")
+                    input.changelog-filter-date.changelog-filter-date-to(
+                        type="text"
+                        tg-date-selector
+                        picker-value="{{filterDateTo}}"
+                    )
+
+                
 
             .changelog-filters-actions
                 button.changelog-filter-apply-dates(
