@@ -342,3 +342,51 @@
         }
     }
 }
+
+.ticket-pull-requests {
+    .pr-list {
+        margin-top: .5rem;
+    }
+    .pr-item {
+        @include font-size(small);
+        display: block;
+        padding: .5rem;
+        margin-bottom: .25rem;
+        background: $color-gray200;
+        border-radius: 4px;
+        text-decoration: none;
+        color: $color-black600;
+        transition: background .2s ease-in;
+        &:hover {
+            background: $color-gray400;
+        }
+    }
+    .pr-branch {
+        @include font-type(medium);
+        color: $color-link-primary;
+        margin-bottom: .25rem;
+        font-family: 'Ubuntu-Medium', monospace;
+        word-break: break-all;
+    }
+    .pr-repository {
+        @include font-size(xsmall);
+        color: $color-black600;
+    }
+    .pr-meta {
+        @include font-size(xsmall);
+        color: $gray-light;
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        flex-wrap: wrap;
+    }
+    .pr-merged-pill {
+        background: #dafbe1;
+        color: #1a6e3a;
+        border-radius: 10px;
+        padding: 0 .5rem;
+        line-height: 1.25rem;
+        @include font-size(xsmall);
+        @include font-type(medium);
+    }
+}
