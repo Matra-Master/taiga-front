@@ -11,8 +11,23 @@
         display: flex;
         flex-wrap: wrap;
         gap: 1.25rem;
+        justify-content: space-between;
         margin-bottom: 1.5rem;
         padding: 1rem 1.25rem;
+    }
+
+    .changelog-filters-fields,
+    .changelog-filters-actions {
+        align-items: flex-end;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+    }
+
+    // Keeps Apply + page size pinned to the right edge even when the fields
+    // group above takes the full row and this group wraps to its own line.
+    .changelog-filters-actions {
+        margin-left: auto;
     }
 
     .changelog-filters-label {
@@ -62,6 +77,10 @@
 
     .changelog-filter-date {
         width: 9.5rem;
+    }
+
+    .changelog-filter-page-size select {
+        width: 6.5rem;
     }
 
     .changelog-filter-apply-dates {
