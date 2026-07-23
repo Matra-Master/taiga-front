@@ -1,40 +1,182 @@
 .changelog {
-    .changelog-empty {
+    background: $grey-02;
+    border-radius: 12px;
+    padding: 1.5rem;
+
+    .changelog-filters {
+        align-items: flex-end;
+        background: $color-white;
+        border: 1px solid $whitish;
+        border-radius: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .changelog-filters-label {
+        align-items: center;
         color: $gray-light;
-        padding: 2rem 0;
+        display: flex;
+        gap: .4rem;
+        @include font-size(small);
+        @include font-type(medium);
+
+        tg-svg {
+            height: 1.4rem;
+            width: 1.4rem;
+        }
+    }
+
+    .changelog-filter {
+        display: flex;
+        flex-direction: column;
+        gap: .35rem;
+    }
+
+    .changelog-filter-label {
+        color: $gray-light;
+        @include font-size(xsmall);
+        @include font-type(medium);
+        letter-spacing: .04em;
+        text-transform: uppercase;
+    }
+
+    .changelog-filter select,
+    .changelog-filter-date {
+        background: $color-white;
+        border: 1px solid $whitish;
+        border-radius: 8px;
+        color: $grey-70;
+        height: 2.5rem;
+        padding: 0 .75rem;
+        @include font-size(small);
+        @include font-type(regular);
+
+        &:focus {
+            border-color: $primary;
+            outline: none;
+        }
+    }
+
+    .changelog-filter-date {
+        width: 9.5rem;
+    }
+
+    .changelog-filter-apply-dates {
+        background: $primary;
+        border: 0;
+        border-radius: 8px;
+        color: $color-white;
+        cursor: pointer;
+        height: 2.5rem;
+        padding: 0 1.1rem;
+        @include font-size(small);
+        @include font-type(medium);
+
+        &:hover {
+            background: darken($primary, 6%);
+        }
+    }
+
+    .changelog-empty {
+        background: $color-white;
+        border: 1px dashed $whitish;
+        border-radius: 10px;
+        color: $gray-light;
+        padding: 3rem 0;
         text-align: center;
     }
 
+    .changelog-entries {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+    }
+
     .changelog-entry {
-        border-bottom: 1px solid $whitish;
-        padding: 1rem 0;
+        background: $color-white;
+        border: 1px solid $whitish;
+        border-radius: 10px;
+        padding: 1.1rem 1.4rem 1.1rem 1.65rem;
+        position: relative;
+        transition: border-color .15s ease;
+
+        // Without this, ngAnimate reads that transition above as the ng-repeat
+        // enter/leave duration: reloading the list would keep the old card
+        // visible (mid "leave") while the new one is already in, doubling
+        // entries for ~150ms. Force enter/leave/move to be instant instead.
+        &.ng-enter,
+        &.ng-leave,
+        &.ng-move {
+            transition: none;
+        }
+
+        &::before {
+            background: $primary-25;
+            border-radius: 10px 0 0 10px;
+            bottom: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 4px;
+        }
+
+        &:hover {
+            border-color: $primary-50;
+        }
+
+        // A push to main/master ships to production: make that lineage read
+        // as solid/primary, feature branches stay in the softer tint above.
+        &.changelog-entry--mainline::before {
+            background: $primary;
+        }
     }
 
     .changelog-entry-header {
         align-items: center;
         display: flex;
         flex-wrap: wrap;
-        gap: .5rem;
-        margin-bottom: .5rem;
+        gap: .6rem;
+        margin-bottom: .6rem;
 
         .changelog-entry-repository {
-            @include font-type(medium);
+            @include font-type(bold);
+            @include font-size(large);
+            color: $color-link-primary;
         }
         .changelog-entry-branch {
-            background: $whitish;
-            border-radius: 3px;
-            color: $gray;
+            background: $primary-10;
+            border-radius: 999px;
+            color: $color-link-primary;
             font-family: monospace;
-            padding: 0 .4rem;
+            @include font-size(xsmall);
+            padding: .15rem .6rem;
         }
         .changelog-entry-date,
         .changelog-entry-pusher {
             color: $gray-light;
+            @include font-size(small);
         }
         .changelog-entry-compare {
+            border: 1px solid $color-link-primary;
+            border-radius: 8px;
             color: $color-link-primary;
+            @include font-size(xsmall);
             margin-left: auto;
+            padding: .3rem .8rem;
+
+            &:hover {
+                background: $primary-10;
+            }
         }
+    }
+
+    .changelog-entry--mainline .changelog-entry-branch {
+        background: $primary;
+        color: $color-white;
     }
 
     .changelog-entry-commits {
@@ -43,13 +185,61 @@
         padding: 0;
 
         li {
-            padding: .2rem 0;
+            border-radius: 6px;
+            padding: .35rem .5rem;
+
+            &:hover {
+                background: $grey-02;
+            }
         }
         .commit-message {
             color: $color-link-primary;
         }
         .commit-author {
             color: $gray-light;
+            @include font-size(small);
         }
+    }
+
+    .changelog-paginator {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        padding-top: 1.5rem;
+    }
+
+    .changelog-paginator-prev,
+    .changelog-paginator-next {
+        align-items: center;
+        background: $color-white;
+        border: 1px solid $whitish;
+        border-radius: 8px;
+        color: $grey-70;
+        cursor: pointer;
+        display: flex;
+        height: 2.25rem;
+        justify-content: center;
+        width: 2.25rem;
+
+        tg-svg {
+            height: 1rem;
+            width: 1rem;
+        }
+
+        &:hover:not([disabled]) {
+            background: $primary-10;
+            border-color: $primary-50;
+        }
+        &[disabled] {
+            cursor: not-allowed;
+            opacity: .4;
+        }
+    }
+
+    .changelog-paginator-current {
+        color: $grey-70;
+        @include font-size(small);
+        @include font-type(medium);
     }
 }

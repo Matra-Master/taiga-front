@@ -1727,7 +1727,15 @@
         "SECTION_NAME": "Changelog",
         "EMPTY": "Nothing recorded yet. Once a configured repository/branch receives a push, it will show up here.",
         "PUSHED_BY": "pushed by {{pusher}}",
-        "VIEW_DIFF": "View diff"
+        "VIEW_DIFF": "View diff",
+        "FILTERS_LABEL": "Filters",
+        "FILTER_REPOSITORY": "Repository",
+        "FILTER_BRANCH": "Branch",
+        "FILTER_ALL": "All",
+        "FILTER_DATE_FROM": "From date",
+        "FILTER_DATE_TO": "To date",
+        "FILTER_APPLY_DATES": "Apply",
+        "NO_PAGINATION": "No pagination"
     },
     "TEAM": {
         "PAGE_TITLE": "Team - {{projectName}}",

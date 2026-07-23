@@ -14,7 +14,13 @@ resourceProvider = ($repo) ->
     }
 
     service.entries = {
-        list: (projectId) -> $repo.queryMany("changelog-entries", {project: projectId})
+        list: (projectId, filters={}) ->
+            params = _.extend({project: projectId}, filters)
+            if params.page_size == "off"
+                # "no pagination" option: drop page_size and ask the back to skip pagination
+                delete params.page_size
+                return $repo.queryMany("changelog-entries", params)
+            return $repo.queryPaginated("changelog-entries", params)
     }
 
     return (instance) ->

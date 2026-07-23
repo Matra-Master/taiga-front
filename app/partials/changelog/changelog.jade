@@ -17,11 +17,77 @@ div.wrapper(
         header
             include ../includes/components/mainTitle
 
+        .changelog-filters
+            .changelog-filters-label
+                tg-svg(svg-icon="icon-filters")
+                span(translate="CHANGELOG.FILTERS_LABEL")
+
+            label.changelog-filter
+                span.changelog-filter-label(translate="CHANGELOG.FILTER_REPOSITORY")
+                select(
+                    ng-model="filterRepository"
+                    ng-change="ctrl.changeRepository(filterRepository)"
+                )
+                    option(value="" translate="CHANGELOG.FILTER_ALL")
+                    option(
+                        ng-repeat="repository in repositories"
+                        value="{{repository.id}}"
+                        ng-bind="repository.full_name"
+                    )
+
+            label.changelog-filter
+                span.changelog-filter-label(translate="CHANGELOG.FILTER_BRANCH")
+                select(
+                    ng-model="filterBranch"
+                    ng-change="ctrl.changeBranch(filterBranch)"
+                )
+                    option(value="" translate="CHANGELOG.FILTER_ALL")
+                    option(
+                        ng-repeat="branch in branches"
+                        value="{{branch}}"
+                        ng-bind="branch"
+                    )
+
+            label.changelog-filter
+                span.changelog-filter-label(translate="CHANGELOG.FILTER_DATE_FROM")
+                input.changelog-filter-date.changelog-filter-date-from(
+                    type="text"
+                    tg-date-selector
+                    picker-value="{{filterDateFrom}}"
+                )
+
+            label.changelog-filter
+                span.changelog-filter-label(translate="CHANGELOG.FILTER_DATE_TO")
+                input.changelog-filter-date.changelog-filter-date-to(
+                    type="text"
+                    tg-date-selector
+                    picker-value="{{filterDateTo}}"
+                )
+
+            button.changelog-filter-apply-dates(
+                type="button"
+                ng-click="ctrl.applyDateFilters()"
+                translate="CHANGELOG.FILTER_APPLY_DATES"
+            )
+
+            label.changelog-filter
+                select(
+                    ng-model="pageSize"
+                    ng-change="ctrl.changePageSize(pageSize)"
+                )
+                    option(value="10") 10
+                    option(value="25") 25
+                    option(value="50") 50
+                    option(value="off" translate="CHANGELOG.NO_PAGINATION")
+
         .changelog-empty(ng-if="entries.length == 0")
             p(translate="CHANGELOG.EMPTY")
 
         .changelog-entries(ng-if="entries.length")
-            .changelog-entry(ng-repeat="entry in entries")
+            .changelog-entry(
+                ng-repeat="entry in entries"
+                ng-class="{'changelog-entry--mainline': entry.branch == 'main' || entry.branch == 'master'}"
+            )
                 .changelog-entry-header
                     span.changelog-entry-repository(ng-bind="repositoriesById[entry.repository]")
                     span.changelog-entry-branch(ng-bind="entry.branch")
@@ -43,3 +109,20 @@ div.wrapper(
                         a(href="{{commit.url}}" target="_blank" rel="noopener noreferrer")
                             span.commit-message(ng-bind="commit.message")
                         span.commit-author(ng-if="commit.author_name") — {{commit.author_name}}
+
+            .changelog-paginator(ng-if="paginatedBy && ctrl.numPages() > 1")
+                button.changelog-paginator-prev(
+                    type="button"
+                    ng-click="ctrl.prevPage()"
+                    ng-disabled="page <= 1"
+                    title="{{'PAGINATION.PREVIOUS' | translate}}"
+                )
+                    tg-svg(svg-icon="icon-arrow-left")
+                span.changelog-paginator-current {{page}} / {{ctrl.numPages()}}
+                button.changelog-paginator-next(
+                    type="button"
+                    ng-click="ctrl.nextPage()"
+                    ng-disabled="page >= ctrl.numPages()"
+                    title="{{'PAGINATION.NEXT' | translate}}"
+                )
+                    tg-svg(svg-icon="icon-arrow-right")
