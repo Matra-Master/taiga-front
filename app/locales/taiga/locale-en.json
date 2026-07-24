@@ -798,7 +798,8 @@
             "CANCEL": "Cancel",
             "EDIT": "Edit",
             "DELETE": "Delete",
-            "REPOSITORY_NAME": "Repository '{{name}}'"
+            "REPOSITORY_NAME": "Repository '{{name}}'",
+            "BRANCHES_ADDED_TO_EXISTING": "This repository was already configured — the new branches were added to it."
         },
         "CUSTOM_ATTRIBUTES": {
             "PAGE_TITLE": "{{sectionName}} - Custom Attributes - {{projectName}}",
