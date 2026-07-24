@@ -662,6 +662,23 @@
             "TASK_TITLE": "Task Statuses",
             "ISSUE_TITLE": "Issue Statuses"
         },
+        "PROJECT_VALUES_AUTOMATION": {
+            "TITLE": "Automation",
+            "SUBTITLE": "Move tickets between columns automatically based on GitHub activity.",
+            "INTRO": "Pick a column for each event below. Leave one blank to leave the ticket where it is.",
+            "US_TITLE": "User stories",
+            "ISSUE_TITLE": "Issues",
+            "OPTION_NONE": "Don't move",
+            "LABEL_BRANCH": "When a branch is created",
+            "DESC_BRANCH": "A branch whose name includes this ticket's reference moves it here.",
+            "LABEL_PR_OPEN": "When a pull request is opened",
+            "DESC_PR_OPEN": "Opening a linked pull request moves the ticket here.",
+            "LABEL_ALL_MERGED": "When every pull request is merged",
+            "DESC_ALL_MERGED": "The ticket moves here once all its linked pull requests are merged.",
+            "DESC_ALL_MERGED_ISSUE": "The ticket moves here once all its linked pull requests are merged. Leave blank to keep it where it is.",
+            "LABEL_CHANGES_REQUESTED": "When changes are requested",
+            "DESC_CHANGES_REQUESTED": "A change request on any linked pull request moves the ticket here."
+        },
         "PROJECT_VALUES_TYPES": {
             "TITLE": "Types",
             "SUBTITLE": "Specify the types your issues could be",
@@ -850,7 +867,8 @@
             "CUSTOM_FIELDS": "Custom fields",
             "TAGS": "Tags",
             "DUE_DATES": "Due dates",
-            "KANBAN_OPTIONS": "Kanban options"
+            "KANBAN_OPTIONS": "Kanban options",
+            "AUTOMATION": "Automation"
         },
         "SUBMENU_ROLES": {
             "TITLE": "Roles",
@@ -1376,6 +1394,7 @@
         "CLONE_ERROR": "Error cloning user story",
         "PULL_REQUESTS": "Pull Requests",
         "PULL_REQUEST_MERGED": "Merged",
+        "PULL_REQUEST_NEED_CHANGES": "Need Changes",
         "TRIBE": {
             "PUBLISH": "Publish as Gig in Taiga Tribe",
             "PUBLISH_INFO": "More info",

@@ -81,6 +81,13 @@ resourceProvider = ($config, $repo, $http, $urls, $auth, $q, $translate) ->
         }
         return $http.patch(url, data)
 
+    service.patch_webhook_status_map = (projectId, webhookStatusMap) ->
+        url = "#{$urls.resolve("projects")}/#{projectId}"
+        data = {
+            webhook_status_map: webhookStatusMap
+        }
+        return $http.patch(url, data)
+
     service.delete_issues_csv_uuid = (projectId) ->
         url = "#{$urls.resolve("projects")}/#{projectId}/delete_issues_csv_uuid"
         return $http.post(url)

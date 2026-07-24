@@ -1,0 +1,120 @@
+
+//- This source code is licensed under the terms of the
+//- GNU Affero General Public License found in the LICENSE file in
+//- the root directory of this source tree.
+//-
+//- Copyright (c) 2021-present Kaleidos INC
+
+section.project-automation
+    p.project-automation-intro(translate="ADMIN.PROJECT_VALUES_AUTOMATION.INTRO")
+
+    form
+        .automation-group
+            h3(translate="ADMIN.PROJECT_VALUES_AUTOMATION.US_TITLE")
+
+            .automation-row
+                .automation-row-info
+                    span.automation-row-label(translate="ADMIN.PROJECT_VALUES_AUTOMATION.LABEL_BRANCH")
+                    span.automation-row-desc(translate="ADMIN.PROJECT_VALUES_AUTOMATION.DESC_BRANCH")
+                .automation-row-control
+                    span.automation-color-dot(
+                        ng-style="{'background-color': statusColorFor(usStatusList, project.webhook_status_map.userstory.branch)}"
+                    )
+                    select(ng-model="project.webhook_status_map.userstory.branch",
+                           ng-options="s.id as s.name for s in usStatusList")
+                        option(value="", translate="ADMIN.PROJECT_VALUES_AUTOMATION.OPTION_NONE")
+
+            .automation-row
+                .automation-row-info
+                    span.automation-row-label(translate="ADMIN.PROJECT_VALUES_AUTOMATION.LABEL_PR_OPEN")
+                    span.automation-row-desc(translate="ADMIN.PROJECT_VALUES_AUTOMATION.DESC_PR_OPEN")
+                .automation-row-control
+                    span.automation-color-dot(
+                        ng-style="{'background-color': statusColorFor(usStatusList, project.webhook_status_map.userstory.pr_open)}"
+                    )
+                    select(ng-model="project.webhook_status_map.userstory.pr_open",
+                           ng-options="s.id as s.name for s in usStatusList")
+                        option(value="", translate="ADMIN.PROJECT_VALUES_AUTOMATION.OPTION_NONE")
+
+            .automation-row
+                .automation-row-info
+                    span.automation-row-label(translate="ADMIN.PROJECT_VALUES_AUTOMATION.LABEL_ALL_MERGED")
+                    span.automation-row-desc(translate="ADMIN.PROJECT_VALUES_AUTOMATION.DESC_ALL_MERGED")
+                .automation-row-control
+                    span.automation-color-dot(
+                        ng-style="{'background-color': statusColorFor(usStatusList, project.webhook_status_map.userstory.all_merged)}"
+                    )
+                    select(ng-model="project.webhook_status_map.userstory.all_merged",
+                           ng-options="s.id as s.name for s in usStatusList")
+                        option(value="", translate="ADMIN.PROJECT_VALUES_AUTOMATION.OPTION_NONE")
+
+            .automation-row
+                .automation-row-info
+                    span.automation-row-label(translate="ADMIN.PROJECT_VALUES_AUTOMATION.LABEL_CHANGES_REQUESTED")
+                    span.automation-row-desc(translate="ADMIN.PROJECT_VALUES_AUTOMATION.DESC_CHANGES_REQUESTED")
+                .automation-row-control
+                    span.automation-color-dot(
+                        ng-style="{'background-color': statusColorFor(usStatusList, project.webhook_status_map.userstory.changes_requested)}"
+                    )
+                    select(ng-model="project.webhook_status_map.userstory.changes_requested",
+                           ng-options="s.id as s.name for s in usStatusList")
+                        option(value="", translate="ADMIN.PROJECT_VALUES_AUTOMATION.OPTION_NONE")
+
+        .automation-group
+            h3(translate="ADMIN.PROJECT_VALUES_AUTOMATION.ISSUE_TITLE")
+
+            .automation-row
+                .automation-row-info
+                    span.automation-row-label(translate="ADMIN.PROJECT_VALUES_AUTOMATION.LABEL_BRANCH")
+                    span.automation-row-desc(translate="ADMIN.PROJECT_VALUES_AUTOMATION.DESC_BRANCH")
+                .automation-row-control
+                    span.automation-color-dot(
+                        ng-style="{'background-color': statusColorFor(issueStatusList, project.webhook_status_map.issue.branch)}"
+                    )
+                    select(ng-model="project.webhook_status_map.issue.branch",
+                           ng-options="s.id as s.name for s in issueStatusList")
+                        option(value="", translate="ADMIN.PROJECT_VALUES_AUTOMATION.OPTION_NONE")
+
+            .automation-row
+                .automation-row-info
+                    span.automation-row-label(translate="ADMIN.PROJECT_VALUES_AUTOMATION.LABEL_PR_OPEN")
+                    span.automation-row-desc(translate="ADMIN.PROJECT_VALUES_AUTOMATION.DESC_PR_OPEN")
+                .automation-row-control
+                    span.automation-color-dot(
+                        ng-style="{'background-color': statusColorFor(issueStatusList, project.webhook_status_map.issue.pr_open)}"
+                    )
+                    select(ng-model="project.webhook_status_map.issue.pr_open",
+                           ng-options="s.id as s.name for s in issueStatusList")
+                        option(value="", translate="ADMIN.PROJECT_VALUES_AUTOMATION.OPTION_NONE")
+
+            .automation-row
+                .automation-row-info
+                    span.automation-row-label(translate="ADMIN.PROJECT_VALUES_AUTOMATION.LABEL_ALL_MERGED")
+                    span.automation-row-desc(translate="ADMIN.PROJECT_VALUES_AUTOMATION.DESC_ALL_MERGED_ISSUE")
+                .automation-row-control
+                    span.automation-color-dot(
+                        ng-style="{'background-color': statusColorFor(issueStatusList, project.webhook_status_map.issue.all_merged)}"
+                    )
+                    select(ng-model="project.webhook_status_map.issue.all_merged",
+                           ng-options="s.id as s.name for s in issueStatusList")
+                        option(value="", translate="ADMIN.PROJECT_VALUES_AUTOMATION.OPTION_NONE")
+
+            .automation-row
+                .automation-row-info
+                    span.automation-row-label(translate="ADMIN.PROJECT_VALUES_AUTOMATION.LABEL_CHANGES_REQUESTED")
+                    span.automation-row-desc(translate="ADMIN.PROJECT_VALUES_AUTOMATION.DESC_CHANGES_REQUESTED")
+                .automation-row-control
+                    span.automation-color-dot(
+                        ng-style="{'background-color': statusColorFor(issueStatusList, project.webhook_status_map.issue.changes_requested)}"
+                    )
+                    select(ng-model="project.webhook_status_map.issue.changes_requested",
+                           ng-options="s.id as s.name for s in issueStatusList")
+                        option(value="", translate="ADMIN.PROJECT_VALUES_AUTOMATION.OPTION_NONE")
+
+        fieldset.automation-actions
+            button.btn-small(
+                variant="primary"
+                type="submit",
+                title="{{'COMMON.SAVE' | translate}}"
+            )
+                span(translate="COMMON.SAVE")

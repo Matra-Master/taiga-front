@@ -1,0 +1,76 @@
+.project-automation {
+    .project-automation-intro {
+        @include font-size(small);
+        color: $color-black600;
+        margin-bottom: 1.5rem;
+        max-width: 40rem;
+    }
+
+    .automation-group {
+        margin-bottom: 2rem;
+
+        h3 {
+            @include font-size(large);
+            @include font-type(medium);
+            border-bottom: 1px solid $whitish;
+            color: $color-black600;
+            margin-bottom: .25rem;
+            padding-bottom: .75rem;
+        }
+    }
+
+    .automation-row {
+        align-items: center;
+        border-bottom: 1px solid $whitish;
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    .automation-row-info {
+        display: flex;
+        flex-direction: column;
+        padding-right: 1.5rem;
+    }
+
+    .automation-row-label {
+        @include font-type(medium);
+        color: $color-black600;
+    }
+
+    .automation-row-desc {
+        @include font-size(small);
+        color: $gray-light;
+        margin-top: .2rem;
+    }
+
+    .automation-row-control {
+        align-items: center;
+        display: flex;
+        flex-shrink: 0;
+        gap: .6rem;
+        width: 16rem;
+
+        select {
+            width: 100%;
+        }
+    }
+
+    .automation-color-dot {
+        background: $color-gray400;
+        border-radius: 50%;
+        flex-shrink: 0;
+        height: .65rem;
+        transition: background-color .2s linear;
+        width: .65rem;
+    }
+
+    .automation-actions {
+        margin-top: 1.5rem;
+        text-align: right;
+    }
+}
