@@ -100,6 +100,7 @@ urls = {
     "project-admin-project-values-tags": "/project/:project/admin/project-values/tags"
     "project-admin-project-values-due-dates": "/project/:project/admin/project-values/due-dates"
     "project-admin-project-values-kanban-power-ups": "/project/:project/admin/project-values/kanban-power-ups"
+    "project-admin-project-values-automation": "/project/:project/admin/project-values/automation"
 
     "project-admin-memberships": "/project/:project/admin/memberships"
     "project-admin-roles": "/project/:project/admin/roles"

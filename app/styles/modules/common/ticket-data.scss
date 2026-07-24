@@ -380,13 +380,24 @@
         gap: .25rem;
         flex-wrap: wrap;
     }
-    .pr-merged-pill {
-        background: #dafbe1;
-        color: #1a6e3a;
+    .pr-merged-pill,
+    .pr-changes-pill {
         border-radius: 10px;
         padding: 0 .5rem;
         line-height: 1.25rem;
         @include font-size(xsmall);
         @include font-type(medium);
+    }
+    .pr-merged-pill {
+        background: #dafbe1;
+        color: #1a6e3a;
+    }
+    .pr-changes-pill {
+        background: $red-10;
+        color: $color-link-red;
+    }
+    // PRs con cambios solicitados se destacan y van primero (orden ya lo da el backend)
+    .pr-item--changes {
+        border-left: 3px solid $color-link-red;
     }
 }

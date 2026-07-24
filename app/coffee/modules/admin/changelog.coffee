@@ -176,7 +176,7 @@ module.directive("tgChangelogRepository", ["$tgRepo", "$tgConfirm", "$translate"
 ## New changelog repository form
 #############################################################################
 
-NewChangelogRepositoryDirective = ($repo, $confirm, $analytics) ->
+NewChangelogRepositoryDirective = ($repo, $confirm, $analytics, $translate) ->
     link = ($scope, $el, $attrs) ->
         formDOMNode = $el.find(".new-changelog-repository-form")
         addDOMNode = $el.find(".add-changelog-repository")
@@ -199,16 +199,37 @@ NewChangelogRepositoryDirective = ($repo, $confirm, $analytics) ->
                     formDOMNode.addClass("hidden")
                     addDOMNode.removeClass("hidden")
 
-        save = debounce 2000, () ->
-            form = formDOMNode.checksley()
-            return if not form.validate()
+        # El repo full_name es único por proyecto en el back (una fila guarda TODAS
+        # sus ramas de interés en un array). Si ya existe una fila para ese repo,
+        # en vez de intentar crear un duplicado (-> 400) le sumamos la rama nueva.
+        findExisting = (fullName) ->
+            _.find $scope.repositories, (repository) -> repository.full_name == fullName
 
+        addBranchesToExisting = (existing) ->
+            existing.branches = _.union(existing.branches, $scope.newValue.branches)
+            promise = $repo.save(existing)
+            promise.then =>
+                $analytics.trackEvent("changelog", "update-repository-branches", "Add branches to existing changelog repository", 1)
+                $confirm.notify("success", $translate.instant("ADMIN.CHANGELOG.BRANCHES_ADDED_TO_EXISTING"))
+                $scope.$emit("changelog-repositories:reload")
+                initializeNewValue()
+            return promise
+
+        createNew = ->
             $scope.newValue.project = $scope.project.id
             promise = $repo.create("changelog-repositories", $scope.newValue)
             promise.then =>
                 $analytics.trackEvent("changelog", "create-repository", "Create changelog repository config", 1)
                 $scope.$emit("changelog-repositories:reload")
                 initializeNewValue()
+            return promise
+
+        save = debounce 2000, () ->
+            form = formDOMNode.checksley()
+            return if not form.validate()
+
+            existing = findExisting($scope.newValue.full_name)
+            promise = if existing then addBranchesToExisting(existing) else createNew()
 
             promise.then null, (data) ->
                 $confirm.notify("error")
@@ -235,4 +256,4 @@ NewChangelogRepositoryDirective = ($repo, $confirm, $analytics) ->
 
     return {link: link}
 
-module.directive("tgNewChangelogRepository", ["$tgRepo", "$tgConfirm", "$tgAnalytics", NewChangelogRepositoryDirective])
+module.directive("tgNewChangelogRepository", ["$tgRepo", "$tgConfirm", "$tgAnalytics", "$translate", NewChangelogRepositoryDirective])

@@ -1474,3 +1474,63 @@ ProjectSwimlanesWipDirective = () ->
     }
 
 module.directive("tgProjectSwimlanesWip", ProjectSwimlanesWipDirective)
+
+
+#############################################################################
+## Project webhook status transitions directive (RuloBot)
+#############################################################################
+
+# Mapeo evento-de-webhook -> status, configurable en Attributes > Status.
+# Select vacío = ese evento no mueve el ticket (ver taiga/hooks/github/event_hooks.py).
+ProjectWebhookTransitionsDirective = ($rs, $confirm, $loading) ->
+    link = ($scope, $el, $attrs) ->
+        form = $el.find("form").checksley({"onlyOneErrorElement": true})
+
+        populate = (project) ->
+            $scope.usStatusList = _.sortBy(project.us_statuses, "order")
+            $scope.issueStatusList = _.sortBy(project.issue_statuses, "order")
+            project.webhook_status_map ?= {}
+            project.webhook_status_map.userstory ?= {}
+            project.webhook_status_map.issue ?= {}
+
+        $scope.statusColorFor = (statusList, statusId) ->
+            status = _.find(statusList, {id: statusId})
+            return if status then status.color else "transparent"
+
+        populate($scope.project)
+
+        $scope.$on "project:loaded", (event, project) ->
+            populate(project)
+
+        submit = debounce 2000, (event) =>
+            event.preventDefault()
+
+            return if not form.validate()
+
+            currentLoading = $loading()
+                .target(submitButton)
+                .start()
+
+            promise = $rs.projects.patch_webhook_status_map(
+                $scope.projectId, $scope.project.webhook_status_map
+            )
+            promise.then ->
+                currentLoading.finish()
+                $confirm.notify("success")
+
+            promise.then null, (response) ->
+                currentLoading.finish()
+                if response.data?._error_message
+                    $confirm.notify("error", response.data._error_message)
+
+        submitButton = $el.find(".submit-button")
+
+        $el.on "submit", "form", submit
+
+        $scope.$on "$destroy", ->
+            $el.off()
+
+    return {link:link}
+
+module.directive("tgWebhookTransitions", ["$tgResources", "$tgConfirm", "$tgLoading",
+                                          ProjectWebhookTransitionsDirective])
