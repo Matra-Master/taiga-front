@@ -537,6 +537,8 @@
             "KANBAN_DESCRIPTION": "Organiza tus proyectos de una manera flexible con este panel.",
             "ISSUES": "Peticiones",
             "ISSUES_DESCRIPTION": "Haz seguimiento de los bugs, preguntas y peticiones de mejoras relacionadas con tu proyecto. ¡No te pierdas nada!",
+            "CHANGELOG": "Registro de cambios",
+            "CHANGELOG_DESCRIPTION": "Registra automáticamente los merges y lanzamientos subidos a las ramas configuradas en Admin > Registro de cambios.",
             "WIKI": "Wiki",
             "WIKI_DESCRIPTION": "Añade, modifica o borra contenido en colaboración con otros miembros. Este es el lugar adecuado para la documentación de tu proyecto.",
             "MEETUP": "Meet Up",
@@ -658,6 +660,23 @@
             "TASK_TITLE": "Estados de Tarea",
             "ISSUE_TITLE": "Estados de la petición"
         },
+        "PROJECT_VALUES_AUTOMATION": {
+            "TITLE": "Automatización",
+            "SUBTITLE": "Mueve los tickets entre columnas automáticamente según la actividad en GitHub.",
+            "INTRO": "Elige una columna para cada evento de abajo. Deja uno en blanco para que el ticket se quede donde está.",
+            "US_TITLE": "Historias de usuario",
+            "ISSUE_TITLE": "Peticiones",
+            "OPTION_NONE": "No mover",
+            "LABEL_BRANCH": "Cuando se crea una rama",
+            "DESC_BRANCH": "Una rama cuyo nombre incluye la referencia de este ticket lo mueve aquí.",
+            "LABEL_PR_OPEN": "Cuando se abre un Pull Request",
+            "DESC_PR_OPEN": "Abrir un Pull Request enlazado mueve el ticket aquí.",
+            "LABEL_ALL_MERGED": "Cuando se mergean todos los Pull Requests",
+            "DESC_ALL_MERGED": "El ticket se mueve aquí cuando se mergean todos sus Pull Requests enlazados.",
+            "DESC_ALL_MERGED_ISSUE": "El ticket se mueve aquí cuando se mergean todos sus Pull Requests enlazados. Déjalo en blanco para que se quede donde está.",
+            "LABEL_CHANGES_REQUESTED": "Cuando se solicitan cambios",
+            "DESC_CHANGES_REQUESTED": "Una solicitud de cambios en cualquier Pull Request enlazado mueve el ticket aquí."
+        },
         "PROJECT_VALUES_TYPES": {
             "TITLE": "Tipos",
             "SUBTITLE": "Especifica los deferentes tipos posibles de peticiones que pueden existir.",
@@ -763,6 +782,23 @@
             "ACTION_SHOW_HISTORY_TITLE": "- info",
             "WEBHOOK_NAME": "Webhook '{{name}}'"
         },
+        "CHANGELOG": {
+            "TITLE": "Registro de cambios",
+            "PAGE_TITLE": "Registro de cambios - {{projectName}}",
+            "SECTION_NAME": "Registro de cambios",
+            "HELP": "Configura qué repositorios y ramas de GitHub son de interés. Cada push a una de estas ramas se registra aquí automáticamente, esté o no visible el módulo de Registro de cambios para el equipo.",
+            "ADD_NEW": "Añadir un Nuevo Repositorio",
+            "REPOSITORY": "Repositorio",
+            "BRANCHES": "Ramas",
+            "TYPE_REPOSITORY": "Escribe el nombre completo del repositorio, ej. \"mi-org/mi-repo\"",
+            "TYPE_BRANCHES": "Escribe los nombres de las ramas separados por comas, ej. \"main, release\"",
+            "SAVE": "Guardar",
+            "CANCEL": "Cancelar",
+            "EDIT": "Editar",
+            "DELETE": "Eliminar",
+            "REPOSITORY_NAME": "Repositorio '{{name}}'",
+            "BRANCHES_ADDED_TO_EXISTING": "Este repositorio ya estaba configurado — las ramas nuevas se añadieron a esa configuración."
+        },
         "CUSTOM_ATTRIBUTES": {
             "PAGE_TITLE": "{{sectionName}} - Atributos Personalizados - {{projectName}}",
             "ADD": "Añadir atributo personalizado",
@@ -830,7 +866,8 @@
             "CUSTOM_FIELDS": "Atributos personalizados",
             "TAGS": "Etiquetas",
             "DUE_DATES": "Vencimiento",
-            "KANBAN_OPTIONS": "Opciones de Kanban"
+            "KANBAN_OPTIONS": "Opciones de Kanban",
+            "AUTOMATION": "Automatización"
         },
         "SUBMENU_ROLES": {
             "TITLE": "Roles",
@@ -1363,6 +1400,7 @@
         "CLONE_ERROR": "Error al clonar la historia de usuario",
         "PULL_REQUESTS": "Pull Requests",
         "PULL_REQUEST_MERGED": "Mergeado",
+        "PULL_REQUEST_NEED_CHANGES": "Requiere Cambios",
         "TRIBE": {
             "PUBLISH": "Publicar como Gig en la Tribu Taiga",
             "PUBLISH_INFO": "Mas información",
@@ -1708,6 +1746,21 @@
         "TITLE_ACTION_SEARCH": "buscar",
         "EMPTY_TITLE": "Parece que no se ha encontrado nada con tus criterios de búsqueda.",
         "EMPTY_DESCRIPTION": "Prueba con otra pestaña de las de arriba o busca de nuevo"
+    },
+    "CHANGELOG": {
+        "PAGE_TITLE": "Registro de cambios - {{projectName}}",
+        "SECTION_NAME": "Registro de cambios",
+        "EMPTY": "Todavía no hay nada registrado. En cuanto un repositorio/rama configurado reciba un push, aparecerá aquí.",
+        "PUSHED_BY": "subido por {{pusher}}",
+        "VIEW_DIFF": "Ver diff",
+        "FILTERS_LABEL": "Filtros",
+        "FILTER_REPOSITORY": "Repositorio",
+        "FILTER_BRANCH": "Rama",
+        "FILTER_ALL": "Todas",
+        "FILTER_DATE_FROM": "Desde",
+        "FILTER_DATE_TO": "Hasta",
+        "FILTER_APPLY_DATES": "Aplicar",
+        "NO_PAGINATION": "Sin paginación"
     },
     "TEAM": {
         "PAGE_TITLE": "Equipo - {{projectName}}",
