@@ -684,14 +684,26 @@ gulp.task("express", function(cb) {
     app.use("/" + version + "/ckeditor-translations", express.static(__dirname + "/dist/" + version + "/ckeditor-translations"));
     app.use("/" + version + "/highlightjs-languages", express.static(__dirname + "/dist/" + version + "/highlightjs-languages"));
     app.use("/plugins", express.static(__dirname + "/dist/plugins"));
-    app.use("/conf.json", express.static(__dirname + "/dist/conf.json"));
+    // ponytail: sin cache para conf.json y para el index.html del fallback de abajo.
+    // Ambos viven en una URL estable pero su contenido cambia en cada reinicio de gulp
+    // (conf.json puede editarse a mano; index.html lleva embebido el "version" stamp
+    // de esta corrida). express.static usa un ETag/Last-Modified basado en tamaño+mtime
+    // del archivo en disco, que gulp no actualiza al escribirlo -> un navegador que ya
+    // visitó la app antes revalida por caché (304) y se queda pegado a una corrida vieja
+    // en vez de bajar la nueva. No pasa en prod (ahí no se usa este dev server).
+    app.use("/conf.json", express.static(__dirname + "/dist/conf.json", {
+        etag: false,
+        lastModified: false,
+        setHeaders: function(res) { res.set("Cache-Control", "no-store"); },
+    }));
     app.use(require('connect-livereload')({
         port: 35729
     }));
 
     app.all("/*", function(req, res, next) {
         //Just send the index.html for other files to support HTML5Mode
-        res.sendFile("index.html", {root: __dirname + "/dist/"});
+        res.set("Cache-Control", "no-store");
+        res.sendFile("index.html", {root: __dirname + "/dist/", lastModified: false});
     });
 
     app.listen(9001);
