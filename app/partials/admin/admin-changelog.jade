@@ -33,6 +33,7 @@ div.wrapper(
         section.changelog-repositories-table.basic-table
             .table-header
                 .row
+                    .repository-platform(translate="ADMIN.CHANGELOG.PLATFORM")
                     .repository-full-name(translate="ADMIN.CHANGELOG.REPOSITORY")
                     .repository-branches(translate="ADMIN.CHANGELOG.BRANCHES")
                     .repository-options
@@ -43,6 +44,13 @@ div.wrapper(
                 )
                     .edition-mode.hidden
                         form.row
+                            fieldset.repository-platform
+                                select(
+                                    name="platform"
+                                    ng-model="repository.platform"
+                                )
+                                    option(value="github") {{'ADMIN.CHANGELOG.GITHUB' | translate}}
+                                    option(value="gitlab") {{'ADMIN.CHANGELOG.GITLAB' | translate}}
                             fieldset.repository-full-name
                                 input(
                                     type="text"
@@ -73,6 +81,7 @@ div.wrapper(
 
                     .visualization-mode
                         .row
+                            .repository-platform(translate="{{repository.platform == 'gitlab' ? 'ADMIN.CHANGELOG.GITLAB' : 'ADMIN.CHANGELOG.GITHUB'}}")
                             .repository-full-name(ng-bind="repository.full_name")
                             .repository-branches(ng-bind="repository.branches.join(', ')")
                             .repository-options
@@ -88,6 +97,13 @@ div.wrapper(
                                     tg-svg(svg-icon="icon-trash")
 
                 form.new-changelog-repository-form.row.hidden
+                    fieldset.repository-platform
+                        select(
+                            name="platform"
+                            ng-model="newValue.platform"
+                        )
+                            option(value="github") {{'ADMIN.CHANGELOG.GITHUB' | translate}}
+                            option(value="gitlab") {{'ADMIN.CHANGELOG.GITLAB' | translate}}
                     fieldset.repository-full-name
                         input(
                             type="text"
