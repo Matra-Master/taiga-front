@@ -1,0 +1,132 @@
+
+//- This source code is licensed under the terms of the
+//- GNU Affero General Public License found in the LICENSE file in
+//- the root directory of this source tree.
+//-
+//- Copyright (c) 2021-present Kaleidos INC
+
+doctype html
+
+div.wrapper(
+    ng-controller="ChangelogController as ctrl"
+    ng-init="section='changelog'"
+)
+    tg-project-menu
+
+    section.main.changelog
+        header
+            include ../includes/components/mainTitle
+        
+        .changelog-filters
+            .changelog-filters-label
+                tg-svg(svg-icon="icon-filters")
+                span(translate="CHANGELOG.FILTERS_LABEL")    
+            .changelog-filters-fields
+                
+                label.changelog-filter
+                    span.changelog-filter-label(translate="CHANGELOG.FILTER_BRANCH")
+                    select(
+                        ng-model="filterBranch"
+                        ng-change="ctrl.changeBranch(filterBranch)"
+                    )
+                        option(value="" translate="CHANGELOG.FILTER_ALL")
+                        option(
+                            ng-repeat="branch in branches"
+                            value="{{branch}}"
+                            ng-bind="branch"
+                        )
+
+                label.changelog-filter
+                    span.changelog-filter-label(translate="CHANGELOG.FILTER_REPOSITORY")
+                    select(
+                        ng-model="filterRepository"
+                        ng-change="ctrl.changeRepository(filterRepository)"
+                    )
+                        option(value="" translate="CHANGELOG.FILTER_ALL")
+                        option(
+                            ng-repeat="repository in repositories"
+                            value="{{repository.id}}"
+                            ng-bind="repository.full_name"
+                        )
+
+                label.changelog-filter
+                    span.changelog-filter-label(translate="CHANGELOG.FILTER_DATE_FROM")
+                    input.changelog-filter-date.changelog-filter-date-from(
+                        type="text"
+                        tg-date-selector
+                        picker-value="{{filterDateFrom}}"
+                    )
+
+                label.changelog-filter
+                    span.changelog-filter-label(translate="CHANGELOG.FILTER_DATE_TO")
+                    input.changelog-filter-date.changelog-filter-date-to(
+                        type="text"
+                        tg-date-selector
+                        picker-value="{{filterDateTo}}"
+                    )
+
+                
+
+            .changelog-filters-actions
+                button.changelog-filter-apply-dates(
+                    type="button"
+                    ng-click="ctrl.applyDateFilters()"
+                    translate="CHANGELOG.FILTER_APPLY_DATES"
+                )
+
+                label.changelog-filter.changelog-filter-page-size
+                    select(
+                        ng-model="pageSize"
+                        ng-change="ctrl.changePageSize(pageSize)"
+                    )
+                        option(value="10") 10
+                        option(value="25") 25
+                        option(value="50") 50
+                        option(value="off" translate="CHANGELOG.NO_PAGINATION")
+
+        .changelog-empty(ng-if="entries.length == 0")
+            p(translate="CHANGELOG.EMPTY")
+
+        .changelog-entries(ng-if="entries.length")
+            .changelog-entry(
+                ng-repeat="entry in entries"
+                ng-class="{'changelog-entry--mainline': entry.branch == 'main' || entry.branch == 'master'}"
+            )
+                .changelog-entry-header
+                    span.changelog-entry-repository(ng-bind="repositoriesById[entry.repository]")
+                    span.changelog-entry-branch(ng-bind="entry.branch")
+                    span.changelog-entry-date(ng-bind="entry.created_date | date:'medium'")
+                    span.changelog-entry-pusher(
+                        ng-if="entry.pusher_name"
+                        translate="CHANGELOG.PUSHED_BY"
+                        translate-values="{pusher: entry.pusher_name}"
+                    )
+                    a.changelog-entry-compare(
+                        href="{{entry.compare_url}}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        translate="CHANGELOG.VIEW_DIFF"
+                    )
+
+                ul.changelog-entry-commits
+                    li(ng-repeat="commit in entry.commits")
+                        a(href="{{commit.url}}" target="_blank" rel="noopener noreferrer")
+                            span.commit-message(ng-bind="commit.message")
+                        span.commit-author(ng-if="commit.author_name") — {{commit.author_name}}
+
+            .changelog-paginator(ng-if="paginatedBy && ctrl.numPages() > 1")
+                button.changelog-paginator-prev(
+                    type="button"
+                    ng-click="ctrl.prevPage()"
+                    ng-disabled="page <= 1"
+                    title="{{'PAGINATION.PREVIOUS' | translate}}"
+                )
+                    tg-svg(svg-icon="icon-arrow-left")
+                span.changelog-paginator-current {{page}} / {{ctrl.numPages()}}
+                button.changelog-paginator-next(
+                    type="button"
+                    ng-click="ctrl.nextPage()"
+                    ng-disabled="page >= ctrl.numPages()"
+                    title="{{'PAGINATION.NEXT' | translate}}"
+                )
+                    tg-svg(svg-icon="icon-arrow-right")

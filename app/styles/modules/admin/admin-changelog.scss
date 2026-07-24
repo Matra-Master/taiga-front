@@ -1,0 +1,59 @@
+.admin-changelog {
+    .changelog-help {
+        color: $gray-light;
+        margin-bottom: 1rem;
+    }
+
+    .changelog-repositories-table {
+        margin-bottom: 1rem;
+        .row {
+            border-bottom: 0;
+            padding: .5rem 0;
+        }
+    }
+
+    .table-header {
+        @include font-type(medium);
+        border-bottom: 1px solid $gray-light;
+    }
+    .table-body {
+        .repository-full-name {
+            color: $gray;
+        }
+    }
+    .single-changelog-repository-wrapper {
+        border-bottom: 1px solid $whitish;
+    }
+    .repository-full-name,
+    .repository-branches {
+        margin-right: .5rem;
+    }
+    .repository-full-name {
+        flex-basis: 35%;
+        flex-shrink: 0;
+    }
+    .repository-branches {
+        color: $gray-light;
+        flex-basis: 45%;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+    .repository-options {
+        flex-basis: 100px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-left: auto;
+        a {
+            cursor: pointer;
+            display: inline-block;
+            margin-right: .5rem;
+        }
+        svg {
+            fill: $gray-light;
+            &:hover {
+                fill: $primary;
+                transition: fill .2s linear;
+            }
+        }
+    }
+}

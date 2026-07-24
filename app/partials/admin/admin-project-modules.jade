@@ -142,6 +142,24 @@ div.wrapper(
                         span.check-text.check-yes(translate="COMMON.YES")
                         span.check-text.check-no(translate="COMMON.NO")
 
+            .module.module-changelog(ng-class="{true:'active', false:''}[project.is_changelog_activated]")
+                .module-icon
+                    tg-svg(svg-icon="icon-timeline")
+                .module-name(translate="ADMIN.MODULES.CHANGELOG")
+                .module-desc(translate="ADMIN.MODULES.CHANGELOG_DESCRIPTION")
+                .module-activation.module-direct-active
+                    div.check
+                        input.activate-input(
+                            id="functionality-changelog"
+                            name="functionality-changelog"
+                            type="checkbox"
+                            ng-checked="project.is_changelog_activated"
+                            ng-model="project.is_changelog_activated"
+                        )
+                        div
+                        span.check-text.check-yes(translate="COMMON.YES")
+                        span.check-text.check-no(translate="COMMON.NO")
+
             .module.module-videoconference(ng-class="{true:'active', false:''}[isVideoconferenceActivated]")
                 .module-icon
                     tg-svg(svg-icon="icon-module-meet")
