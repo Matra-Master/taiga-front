@@ -46,7 +46,7 @@ div.wrapper(
                         option(
                             ng-repeat="repository in repositories"
                             value="{{repository.id}}"
-                            ng-bind="repository.full_name"
+                            ng-bind="repositoriesById[repository.id]"
                         )
 
                 label.changelog-filter

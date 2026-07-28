@@ -24,17 +24,27 @@
     .single-changelog-repository-wrapper {
         border-bottom: 1px solid $whitish;
     }
+    .repository-platform,
     .repository-full-name,
     .repository-branches {
         margin-right: .5rem;
     }
+    .repository-platform {
+        color: $gray-light;
+        flex-basis: 15%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        select {
+            width: 100%;
+        }
+    }
     .repository-full-name {
-        flex-basis: 35%;
+        flex-basis: 30%;
         flex-shrink: 0;
     }
     .repository-branches {
         color: $gray-light;
-        flex-basis: 45%;
+        flex-basis: 35%;
         flex-grow: 0;
         flex-shrink: 0;
     }

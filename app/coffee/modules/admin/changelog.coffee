@@ -183,6 +183,7 @@ NewChangelogRepositoryDirective = ($repo, $confirm, $analytics, $translate) ->
 
         initializeNewValue = ->
             $scope.newValue = {
+                "platform": "github"
                 "full_name": ""
                 "branches": []
             }
@@ -199,11 +200,14 @@ NewChangelogRepositoryDirective = ($repo, $confirm, $analytics, $translate) ->
                     formDOMNode.addClass("hidden")
                     addDOMNode.removeClass("hidden")
 
-        # El repo full_name es único por proyecto en el back (una fila guarda TODAS
-        # sus ramas de interés en un array). Si ya existe una fila para ese repo,
-        # en vez de intentar crear un duplicado (-> 400) le sumamos la rama nueva.
-        findExisting = (fullName) ->
-            _.find $scope.repositories, (repository) -> repository.full_name == fullName
+        # El repo full_name+platform es único por proyecto en el back (una fila
+        # guarda TODAS sus ramas de interés en un array). Si ya existe una fila
+        # para ese repo+plataforma, en vez de intentar crear un duplicado (-> 400)
+        # le sumamos la rama nueva. Mismo full_name en plataformas distintas
+        # (ej. "acme/webapp" en GitHub Y en GitLab) son filas separadas.
+        findExisting = (fullName, platform) ->
+            _.find $scope.repositories, (repository) ->
+                repository.full_name == fullName and repository.platform == platform
 
         addBranchesToExisting = (existing) ->
             existing.branches = _.union(existing.branches, $scope.newValue.branches)
@@ -228,7 +232,7 @@ NewChangelogRepositoryDirective = ($repo, $confirm, $analytics, $translate) ->
             form = formDOMNode.checksley()
             return if not form.validate()
 
-            existing = findExisting($scope.newValue.full_name)
+            existing = findExisting($scope.newValue.full_name, $scope.newValue.platform)
             promise = if existing then addBranchesToExisting(existing) else createNew()
 
             promise.then null, (data) ->

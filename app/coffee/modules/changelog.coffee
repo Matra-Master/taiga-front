@@ -72,10 +72,19 @@ class ChangelogController extends mixOf(taiga.Controller, taiga.PageMixin, taiga
     loadRepositories: ->
         return @rs.changelog.repositories.list(@scope.projectId).then (repositories) =>
             @scope.repositories = repositories
+            # El mismo full_name puede existir en dos plataformas (ej. "acme/webapp"
+            # en GitHub Y en GitLab) - son filas distintas. Solo mostramos la
+            # plataforma entre paréntesis cuando hay una colisión real de nombre,
+            # para no ensuciar el caso común de un solo proveedor.
+            countByName = _.countBy(repositories, "full_name")
             byId = {}
             branches = []
             for repository in repositories
-                byId[repository.id] = repository.full_name
+                label = repository.full_name
+                if countByName[repository.full_name] > 1
+                    platformKey = if repository.platform == "gitlab" then "ADMIN.CHANGELOG.GITLAB" else "ADMIN.CHANGELOG.GITHUB"
+                    label = "#{label} (#{@translate.instant(platformKey)})"
+                byId[repository.id] = label
                 branches = branches.concat(repository.branches or [])
             @scope.repositoriesById = byId
             @scope.branches = _.sortBy(_.uniq(branches))
