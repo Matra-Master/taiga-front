@@ -170,6 +170,17 @@
             @include font-size(xsmall);
             padding: .15rem .6rem;
         }
+        .changelog-entry-source {
+            align-items: center;
+            display: flex;
+            gap: .3rem;
+        }
+        .changelog-entry-source-arrow {
+            color: $gray-light;
+        }
+        a.changelog-entry-branch:hover {
+            text-decoration: underline;
+        }
         .changelog-entry-date,
         .changelog-entry-pusher {
             color: $gray-light;
@@ -194,9 +205,35 @@
         color: $color-white;
     }
 
+    .changelog-entry-commits-toggle {
+        align-items: center;
+        background: none;
+        border: 0;
+        color: $gray-light;
+        cursor: pointer;
+        display: flex;
+        gap: .3rem;
+        padding: 0;
+        @include font-size(small);
+
+        tg-svg {
+            height: .85rem;
+            transition: transform .15s ease;
+            width: .85rem;
+        }
+
+        &.open tg-svg {
+            transform: rotate(180deg);
+        }
+
+        &:hover {
+            color: $grey-70;
+        }
+    }
+
     .changelog-entry-commits {
         list-style: none;
-        margin: 0;
+        margin: .5rem 0 0;
         padding: 0;
 
         li {
