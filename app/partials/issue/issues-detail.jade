@@ -173,6 +173,7 @@ div.wrapper(
                 tg-check-permission="modify_issue",
                 ng-model="issue"
             )
+            tg-copy-branch-button(item="issue")
             tg-delete-button(
                 tg-check-permission="delete_issue",
                 on-delete-title="{{'ISSUES.ACTION_DELETE' | translate}}",

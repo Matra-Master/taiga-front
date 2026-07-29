@@ -181,6 +181,7 @@ section.issues-table.basic-table(ng-class="{empty: !ctrl.issues.length}")
                     ng-style="{background: tag[1]}"
                     ng-class="{'last':$last}"
                 ) {{tag[0]}}
+            tg-copy-branch-button(item="issue")
 
         div.issue-field(tg-issue-status-inline-edition="issue")
             a.issue-status(

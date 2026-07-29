@@ -12,6 +12,29 @@ bindMethods = @.taiga.bindMethods
 
 module = angular.module("taigaChangelog", [])
 
+# Merge commit message formats:
+#   GitHub: "Merge pull request #13 from owner/backend/TG-3-foo\n\nPR title"
+#   GitLab: "Merge branch 'backend/TG-3-foo' into 'main'"
+# Anchored to the start (no /m flag) and to a non-space run, so it only ever
+# matches the first line - the PR title on line 3 can't smuggle a false TG-n.
+SOURCE_BRANCH_RE = /^Merge (?:pull request #\d+ from [^\/\s]+\/(\S+)|branch '([^']+)')/
+
+sourceRef = (headMessage) ->
+    m = SOURCE_BRANCH_RE.exec(headMessage or "")
+    return null if not m
+    # The source branch can be nested (backend/feature/TG-123-foo)
+    tg = /TG-(\d+)/i.exec(m[1] or m[2])
+    return if tg then tg[1] else null
+
+decorateEntry = (entry) ->
+    entry.sourceRef = sourceRef(entry.head_message)
+    for commit in entry.commits
+        commit.shortMessage = commit.message.split("\n")[0]
+    return entry
+
+# Exported for unit testing (see changelog.spec.coffee)
+taiga.changelogSourceRef = sourceRef
+
 
 #############################################################################
 ## Changelog (member-facing, read-only)
@@ -50,6 +73,7 @@ class ChangelogController extends mixOf(taiga.Controller, taiga.PageMixin, taiga
         @scope.sectionName = "CHANGELOG.SECTION_NAME"
         @scope.project = {}
         @scope.repositoriesById = {}
+        @scope.expanded = {}
 
         params = @location.search()
         @scope.filterRepository = params.repository or ""
@@ -103,12 +127,12 @@ class ChangelogController extends mixOf(taiga.Controller, taiga.PageMixin, taiga
 
             if _.isArray(data)
                 # "no pagination" response: a plain array with everything in it
-                @scope.entries = data
+                @scope.entries = _.map(data, decorateEntry)
                 @scope.count = data.length
                 @scope.page = 1
                 @scope.paginatedBy = null
             else
-                @scope.entries = data.models
+                @scope.entries = _.map(data.models, decorateEntry)
                 @scope.page = data.current
                 @scope.count = data.count
                 @scope.paginatedBy = data.paginatedBy

@@ -41,7 +41,7 @@
         }
         .task-settings {
             flex-shrink: 0;
-            width: 60px;
+            width: 90px;
         }
         .status {
             flex-shrink: 0;
@@ -204,6 +204,15 @@
             &:hover {
                 cursor: pointer;
             }
+        }
+        // The copy-branch button is shared with other spots (ticket detail,
+        // issues table) where it's styled as a solid .btn-icon; here it sits
+        // among plain unstyled svg icons, so strip that chrome down to match.
+        .button-copy-branch {
+            background: none;
+            border: 0;
+            cursor: pointer;
+            padding: 0;
         }
     }
     .edit-task,

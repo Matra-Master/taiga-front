@@ -95,6 +95,12 @@ div.wrapper(
                 .changelog-entry-header
                     span.changelog-entry-repository(ng-bind="repositoriesById[entry.repository]")
                     span.changelog-entry-branch(ng-bind="entry.branch")
+                    span.changelog-entry-source(ng-if="entry.sourceRef")
+                        span.changelog-entry-source-arrow ←
+                        a.changelog-entry-branch(
+                            tg-nav="project-detail-ref:project=project.slug,ref=entry.sourceRef"
+                            title="{{'CHANGELOG.MERGED_FROM' | translate}}"
+                        ) TG-{{entry.sourceRef}}
                     span.changelog-entry-date(ng-bind="entry.created_date | date:'medium'")
                     span.changelog-entry-pusher(
                         ng-if="entry.pusher_name"
@@ -108,10 +114,22 @@ div.wrapper(
                         translate="CHANGELOG.VIEW_DIFF"
                     )
 
-                ul.changelog-entry-commits
+                button.changelog-entry-commits-toggle(
+                    type="button"
+                    ng-if="entry.commits.length"
+                    ng-click="expanded[entry.id] = !expanded[entry.id]"
+                    ng-class="{'open': expanded[entry.id]}"
+                )
+                    tg-svg(svg-icon="icon-arrow-down")
+                    span(
+                        translate="CHANGELOG.COMMITS_COUNT"
+                        translate-values="{count: entry.commits.length}"
+                    )
+
+                ul.changelog-entry-commits(ng-show="expanded[entry.id]")
                     li(ng-repeat="commit in entry.commits")
                         a(href="{{commit.url}}" target="_blank" rel="noopener noreferrer")
-                            span.commit-message(ng-bind="commit.message")
+                            span.commit-message(ng-bind="commit.shortMessage")
                         span.commit-author(ng-if="commit.author_name") — {{commit.author_name}}
 
             .changelog-paginator(ng-if="paginatedBy && ctrl.numPages() > 1")

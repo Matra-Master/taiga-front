@@ -69,6 +69,17 @@ unslugify = (data) ->
     return data
 
 
+# Team's branch naming convention: TG-<ref>-<subject slug>, or
+# TG-<usRef>-#<taskRef>-<subject slug> for tasks. TG-<n> is what TG_REF_RE
+# matches on the backend webhooks to drive the ticket's status transitions.
+# _.deburr (not slugify above) transposes accents/ñ instead of just
+# stripping them: "Añadir botón" -> "Anadir boton", not "aadir-botn".
+branchName = (item, usRef = null, taskRef = null) ->
+    parts = if taskRef then ["TG-#{usRef}", "##{taskRef}"] else ["TG-#{item.ref}"]
+    parts.push(_.kebabCase(_.deburr(item.subject or "")))
+    return _.compact(parts).join("-")
+
+
 toggleText = (element, texts) ->
     nextTextPosition = element.data('nextTextPosition')
     nextTextPosition = 0 if not nextTextPosition? or nextTextPosition >= texts.length
@@ -282,6 +293,7 @@ taiga.mixOf = mixOf
 taiga.trim = trim
 taiga.slugify = slugify
 taiga.unslugify = unslugify
+taiga.branchName = branchName
 taiga.toggleText = toggleText
 taiga.groupBy = groupBy
 taiga.timeout = timeout

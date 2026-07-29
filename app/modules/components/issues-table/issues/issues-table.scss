@@ -164,6 +164,8 @@
         display: flex;
     }
     .subject {
+        align-items: center;
+        display: flex;
         flex: 1;
         margin: 0 .5rem;
         a {
@@ -172,16 +174,22 @@
             column-gap: .25rem;
             cursor: pointer;
             display: flex;
+            flex: 1;
             flex-wrap: wrap;
+            min-width: 0;
             row-gap: .25rem;
+            &:hover {
+                .issue-ref {
+                    color: $color-black900;
+                }
+                .issue-subject {
+                    color: $color-link-primary;
+                }
+            }
         }
-        &:hover {
-            .issue-ref {
-                color: $color-black900;
-            }
-            .issue-subject {
-                color: $color-link-primary;
-            }
+        .button-copy-branch {
+            flex-shrink: 0;
+            margin-inline-start: .5rem;
         }
         .issue-ref {
             align-items: center;

@@ -282,6 +282,45 @@ DeleteButtonDirective = ($log, $repo, $confirm, $location, $template) ->
 module.directive("tgDeleteButton", ["$log", "$tgRepo", "$tgConfirm", "$tgLocation", "$tgTemplate", DeleteButtonDirective])
 
 #############################################################################
+## Copy Branch Name Button directive
+#############################################################################
+## Copies the team's branch naming convention (TG-<ref>-<subject-slug>, or
+## TG-<usRef>-#<taskRef>-<subject-slug> for tasks) to the clipboard.
+## Usage: tg-copy-branch-button(item="us") or, for a task, also pass
+## us-ref="task.user_story_extra_info.ref" / us-ref="us.ref".
+#############################################################################
+
+CopyBranchButtonDirective = ($translate, $confirm, $template) ->
+    template = $template.get("common/components/copy-branch-button.html")
+
+    link = ($scope, $el, $attrs) ->
+        $el.on "click", ".button-copy-branch", (event) ->
+            event.preventDefault()
+            # Some call sites (e.g. the issues table row) nest this button
+            # inside a bigger tg-nav link; stop it from also triggering that
+            # navigation.
+            event.stopPropagation()
+            item = $scope.$eval($attrs.item)
+            return if not item
+
+            usRef = if $attrs.usRef then $scope.$eval($attrs.usRef) else null
+            branch = taiga.branchName(item, usRef, if usRef then item.ref else null)
+
+            navigator.clipboard.writeText(branch)
+            $confirm.notify("success", branch, $translate.instant("COMMON.COPY_BRANCH_NAME"))
+
+        $scope.$on "$destroy", ->
+            $el.off()
+
+    return {
+        link: link
+        restrict: "EA"
+        template: template
+    }
+
+module.directive("tgCopyBranchButton", ["$translate", "$tgConfirm", "$tgTemplate", CopyBranchButtonDirective])
+
+#############################################################################
 ## Common list directives
 #############################################################################
 ## NOTE: These directives are used in issues and search and are

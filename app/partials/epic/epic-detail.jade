@@ -136,6 +136,7 @@ div.wrapper(
                 tg-check-permission="modify_epic",
                 ng-model="epic"
             )
+            tg-copy-branch-button(item="epic")
             tg-delete-button(
                 tg-check-permission="delete_epic",
                 on-delete-title="{{'EPIC.ACTION_DELETE' | translate}}",

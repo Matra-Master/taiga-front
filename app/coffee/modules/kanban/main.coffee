@@ -1098,8 +1098,20 @@ CardActionsDirective = ($template, $translate, projectService, $navUrls) ->
                             icon: 'icon-clipboard-url',
                             event: () ->
                                  kanbanPath = window.location.href
-                                 usPath = kanbanPath.split("kanban")[0] + "us/" + $scope.vm.item.getIn(['model', 'ref'])                                 
+                                 usPath = kanbanPath.split("kanban")[0] + "us/" + $scope.vm.item.getIn(['model', 'ref'])
                                  navigator.clipboard.writeText(usPath)
+                        },
+                    )
+                    actions.push(
+                        {
+                            text: $translate.instant('COMMON.CARD.COPY_BRANCH_NAME'),
+                            icon: 'icon-clipboard',
+                            event: () ->
+                                 us = {
+                                     ref: $scope.vm.item.getIn(['model', 'ref'])
+                                     subject: $scope.vm.item.getIn(['model', 'subject'])
+                                 }
+                                 navigator.clipboard.writeText(taiga.branchName(us))
                         },
                     )
 

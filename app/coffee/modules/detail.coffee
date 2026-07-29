@@ -58,6 +58,11 @@ class DetailController
                     slug: @params.ref
                 })
 
+            # This route is a pure redirect step, never a page users land on
+            # by intent - if it pushed its own history entry, hitting "back"
+            # from the resolved ticket would bounce here and immediately
+            # redirect forward again, looking like "back" does nothing.
             @location.path(url)
+            @location.replace()
 
 module.controller("DetailController", DetailController)
