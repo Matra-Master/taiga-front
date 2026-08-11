@@ -1829,6 +1829,7 @@
         "CHANGE_EMAIL_SUCCESS": "<strong>Check your inbox!</strong><br />We have sent a mail to your account<br />with the instructions to set your new address",
         "VERIFY_EMAIL_SUCCESS": "<strong>Check your inbox!</strong><br />We have sent you an email<br />with instructions on how to verify your address",
         "CHANGE_PHOTO": "Change photo",
+        "COPY_API_TOKEN": "Copy API token",
         "FIELD": {
             "USERNAME": "Username",
             "EMAIL": "Email",
@@ -1840,7 +1841,9 @@
             "LANGUAGE_DEFAULT": "-- use default language --",
             "THEME": "Theme",
             "THEME_DEFAULT": "-- use default theme --",
-            "CLOCKIFY_KEY": "Clockify key"
+            "CLOCKIFY_KEY": "Clockify key",
+            "API_TOKEN": "API token",
+            "PLACEHOLDER_API_TOKEN": "Copy to get your token"
         }
     },
     "WIKI": {

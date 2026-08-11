@@ -7,6 +7,21 @@
         width: 100%;
     }
 
+    // Input de sólo lectura con el botón de copiar pegado a su borde derecho.
+    .field-with-option {
+        display: flex;
+        input[type='text'] {
+            border-radius: 3px 0 0 3px;
+            border-right: 0;
+            flex: 1;
+            font-family: monospace;
+            min-width: 0;
+        }
+        .btn-icon {
+            border-radius: 0 3px 3px 0;
+        }
+    }
+
     .actions {
         align-items: center;
         display: flex;

@@ -106,6 +106,40 @@ class UserSettingsController extends mixOf(taiga.Controller, taiga.PageMixin)
 
         @auth.sendVerificationEmail().then(onSuccess, onError)
 
+    copyApiToken: ->
+        onSuccess = (result) =>
+            @scope.apiToken = result.data.token
+            # En pantalla sólo se muestra el arranque del token; se copia completo.
+            @scope.apiTokenMasked = @scope.apiToken.slice(0, 5) + "********"
+            @.writeClipboard(@scope.apiToken)
+            @confirm.notify("success", @translate.instant("COMMON.COPIED_TO_CLIPBOARD"))
+
+        onError = (response) =>
+            if response.data?._error_message
+                @confirm.notify("error", response.data._error_message)
+            else
+                @confirm.notify("error")
+
+        # El token es siempre el mismo, así que sólo se pide la primera vez.
+        if @scope.apiToken
+            return onSuccess({data: {token: @scope.apiToken}})
+
+        @rs.userSettings.getApiToken().then(onSuccess, onError)
+
+    writeClipboard: (text) ->
+        # ponytail: navigator.clipboard sólo existe en contexto seguro y este deploy sirve el
+        # front por HTTP, así que queda el fallback sobre el input readonly.
+        return @window.navigator.clipboard.writeText(text) if @window.navigator.clipboard
+
+        # El input muestra el token enmascarado, así que hay que ponerle el valor completo
+        # mientras dura el copiado y devolverlo después.
+        input = @window.document.getElementById("api-token")
+        masked = input.value
+        input.value = text
+        input.select()
+        @window.document.execCommand("copy")
+        input.value = masked
+
 
 module.controller("UserSettingsController", UserSettingsController)
 
