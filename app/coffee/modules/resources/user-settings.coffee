@@ -46,6 +46,10 @@ resourceProvider = ($config, $repo, $http, $urls, $q) ->
         }
         return $http.post(url, data)
 
+    service.getApiToken = () ->
+        url = "#{$urls.resolve("application-tokens")}/me"
+        return $http.post(url)
+
     return (instance) ->
         instance.userSettings = service
 

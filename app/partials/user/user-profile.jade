@@ -139,6 +139,27 @@ div.wrapper(
                         placeholder="Get API key from Clockify -> Preferences -> Advanced",
                     )
 
+                fieldset
+                    label(for="api-token", translate="USER_PROFILE.FIELD.API_TOKEN")
+                    .field-with-option
+                        input(
+                            type="text"
+                            autocorrect="off"
+                            autocapitalize="none"
+                            name="api-token"
+                            id="api-token"
+                            readonly="readonly"
+                            ng-model="apiTokenMasked"
+                            placeholder="{{'USER_PROFILE.FIELD.PLACEHOLDER_API_TOKEN' | translate}}"
+                        )
+                        button.btn-icon(
+                            type="button"
+                            variant="secondary"
+                            title="{{'USER_PROFILE.COPY_API_TOKEN' | translate}}"
+                            ng-click="ctrl.copyApiToken()"
+                        )
+                            tg-svg(svg-icon="icon-clipboard")
+
                 fieldset.submit
                     button.btn-small(
                         variant="primary"

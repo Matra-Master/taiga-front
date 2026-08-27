@@ -1834,6 +1834,7 @@
         "CHANGE_EMAIL_SUCCESS": "<strong>¡Revisa tu bandeja de entrada!</strong><br />Hemos enviado un mail a tu cuenta<br />con instrucciones para establecer tu nueva dirección",
         "VERIFY_EMAIL_SUCCESS": "<strong>¡Comprueba tu bandeja de entrada!</strong><br />Te hemos enviado un correo electrónico<br />con instrucciones para verificar tu dirección",
         "CHANGE_PHOTO": "Cambiar foto",
+        "COPY_API_TOKEN": "Copiar token de API",
         "FIELD": {
             "USERNAME": "Nombre de usuario",
             "EMAIL": "Correo",
@@ -1845,7 +1846,9 @@
             "LANGUAGE_DEFAULT": "- usar idioma por defecto -",
             "THEME": "Tema",
             "THEME_DEFAULT": "-- usar tema por defecto --",
-            "CLOCKIFY_KEY": "Clave de Clockify"
+            "CLOCKIFY_KEY": "Clave de Clockify",
+            "API_TOKEN": "Token de API",
+            "PLACEHOLDER_API_TOKEN": "Copia para obtener tu token"
         }
     },
     "WIKI": {
