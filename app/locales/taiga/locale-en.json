@@ -426,8 +426,10 @@
         "TITLE": "EPICS",
         "SECTION_NAME": "Epics",
         "EPIC": "EPIC",
-        "CLOCKIFY_PROJECT_ID": "Clockify Project ID",
-        "CLOCKIFY_PROJECT_ID_PLACEHOLDER": "Enter the Clockify Project ID",
+        "KIMAI_PROJECT_ID": "Kimai project",
+        "SAVE_KIMAI_PROJECT_ID": "Save Kimai project",
+        "KIMAI_PROJECT_ID_SAVED": "Kimai project saved",
+        "KIMAI_PROJECT_ID_SAVE_ERROR": "Could not save the Kimai project",
         "PAGE_TITLE": "Epics - {{projectName}}",
         "PAGE_DESCRIPTION": "The epics list of the project {{projectName}}: {{projectDescription}}",
         "DASHBOARD": {
@@ -455,8 +457,7 @@
             "TITLE": "New Epic",
             "PLACEHOLDER_DESCRIPTION": "Please add descriptive text to help others better understand this epic",
             "TEAM_REQUIREMENT": "Team requirement",
-            "CLOCKIFY_PROJECT_ID": "Clockify Project ID",
-            "CLOCKIFY_PROJECT_ID_PLACEHOLDER": "Enter the Clockify Project ID",
+            "KIMAI_PROJECT_ID": "Kimai project",
             "CLIENT_REQUIREMENT": "Client requirement",
             "BLOCKED": "Blocked",
             "BLOCKED_NOTE_PLACEHOLDER": "Why is this epic blocked?",
@@ -558,7 +559,7 @@
         "PROJECT_PROFILE": {
             "PAGE_TITLE": "{{sectionName}} - Project profile  - {{projectName}}",
             "PROJECT_DETAILS": "Project details",
-            "PROJECT_CLOCKIFY_ID": "Project Clockify Id",
+            "PROJECT_KIMAI_ID": "Kimai project",
             "TRACKING_MODE": "Tracking mode",
             "TRACK_BY_PROJECT": "Track by project",
             "TRACK_BY_EPIC": "Track by epic",
@@ -1056,7 +1057,7 @@
             "DETAILS": "New project details",
             "PROJECT_TITLE": "Project Name (Required)",
             "PROJECT_DESCRIPTION": "Project Description (Required)",
-            "PROJECT_CLOCKIFY_ID": "Project Clockify Id (Required)"
+            "PROJECT_KIMAI_ID": "Kimai project (required)"
         },
         "DUPLICATE": {
             "TITLE": "Duplicate Project",
@@ -1371,9 +1372,27 @@
         "LIGHTBOX_TITLE_BLOKING_EPIC": "Blocking epic",
         "ACTION_DELETE": "Delete epic"
     },
+    "KIMAI": {
+        "PROJECTS_ACCESS_HINT": "You only see the Kimai projects your user has access to.",
+        "NO_PROJECTS": "Your Kimai user has no access to any project. Ask a Kimai administrator for access.",
+        "PROJECTS_LOAD_ERROR": "Kimai projects couldn't be loaded. Check that your Kimai API token is valid.",
+        "NO_TOKEN": "To pick a Kimai project, add your Kimai API token in your profile. You'll only see the projects you have access to.",
+        "GO_TO_PROFILE": "Go to my profile",
+        "START_TITLE": "Start Kimai timer",
+        "ACTIVITY": "Activity",
+        "SEARCH_ACTIVITY": "Search activity...",
+        "START_HINT": "Time starts counting when you press “Start timer”.",
+        "START": "Start timer",
+        "SELECT_ACTIVITY": "Pick an activity",
+        "SEARCH_PROJECT": "Search Kimai project...",
+        "NO_RESULTS": "No results",
+        "SELECT_PROJECT": "Pick a Kimai project",
+        "PROJECT_ACTIVITIES": "Project activities",
+        "GLOBAL_ACTIVITIES": "Global activities"
+    },
     "US": {
-        "TIMER_START": "Clockify timer start",
-        "TIMER_STOP": "Clockify timer stop",
+        "TIMER_START": "Kimai timer started",
+        "TIMER_STOP": "Kimai timer stopped",
         "PAGE_TITLE": "{{userStorySubject}} - User Story {{userStoryRef}} - {{projectName}}",
         "PAGE_DESCRIPTION": "Status: {{userStoryStatus }}. Completed {{userStoryProgressPercentage}}% ({{userStoryClosedTasks}} of {{userStoryTotalTasks}} tasks closed). Points: {{userStoryPoints}}. Description: {{userStoryDescription}}",
         "SECTION_NAME": "User story",
@@ -1841,7 +1860,8 @@
             "LANGUAGE_DEFAULT": "-- use default language --",
             "THEME": "Theme",
             "THEME_DEFAULT": "-- use default theme --",
-            "CLOCKIFY_KEY": "Clockify key",
+            "KIMAI_TOKEN": "Kimai API token",
+            "KIMAI_TOKEN_PLACEHOLDER": "Kimai → My profile → API → create token",
             "API_TOKEN": "API token",
             "PLACEHOLDER_API_TOKEN": "Copy to get your token"
         }

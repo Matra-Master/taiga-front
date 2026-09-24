@@ -79,15 +79,8 @@ div.wrapper(
                         data-required="true"
                     )
                 fieldset(ng-if="project.tracking_mode === 'project'")
-                    label(for="project-clockify-id") {{ 'ADMIN.PROJECT_PROFILE.PROJECT_CLOCKIFY_ID' | translate }}
-                    input(
-                        type="text"
-                        name="name"
-                        placeholder="{{'ADMIN.PROJECT_PROFILE.PROJECT_CLOCKIFY_ID' | translate}}"
-                        id="project-clockify-id"
-                        ng-model="project.clockify_id"
-                        maxlength="36"
-                    )
+                    label {{ 'ADMIN.PROJECT_PROFILE.PROJECT_KIMAI_ID' | translate }}
+                    tg-kimai-project-select(model="project.kimai_project_id")
 
                 fieldset
                     label(for="tracking-mode") {{ 'ADMIN.PROJECT_PROFILE.TRACKING_MODE' | translate }}

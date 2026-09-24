@@ -45,9 +45,11 @@ urls = {
     # User - Storage
     "user-storage": "/user-storage"
 
-    # User - Clockify
-    "user-start-clocki": "/users/start_clockify_timer"
-    "user-stop-clocki": "/users/stop_clockify_timer"
+    # User - Kimai
+    "user-start-kimai": "/users/start_kimai_timer"
+    "user-stop-kimai": "/users/stop_kimai_timer"
+    "user-kimai-projects": "/users/kimai_projects"
+    "user-kimai-activities": "/users/kimai_activities"
 
     # Memberships
     "memberships": "/memberships"

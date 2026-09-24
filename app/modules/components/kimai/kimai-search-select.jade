@@ -1,0 +1,46 @@
+.kimai-combo(ng-class="{'is-open': vm.open}")
+  button.kimai-combo-field(
+    type="button"
+    ng-if="!vm.open"
+    ng-click="vm.openList()"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+  )
+    span.kimai-combo-value(ng-if="vm.selectedLabel()") {{ vm.selectedLabel() }}
+    span.kimai-combo-placeholder(ng-if="!vm.selectedLabel()") {{ vm.placeholder }}
+    tg-svg.kimai-combo-chevron(svg-icon="icon-arrow-down")
+
+  input.kimai-combo-field.kimai-combo-search(
+    ng-if="vm.open"
+    type="text"
+    autocomplete="off"
+    ng-model="vm.search"
+    ng-keydown="vm.keydown($event)"
+    ng-blur="vm.open = false"
+    placeholder="{{ vm.selectedLabel() || vm.searchPlaceholder }}"
+    role="combobox"
+    aria-autocomplete="list"
+    aria-expanded="true"
+  )
+
+  //- mousedown sin default: clicks en grupos, "sin resultados" o la barra de scroll no le sacan el foco al buscador.
+  ul.kimai-combo-list(
+    role="listbox"
+    ng-if="vm.open"
+    ng-mousedown="$event.preventDefault()"
+  )
+    li.kimai-combo-group(
+      ng-repeat-start="item in vm.filtered = (vm.items | filter:{label: vm.search})"
+      ng-if="item.group && item.group != vm.filtered[$index - 1].group"
+    ) {{ item.group }}
+    li.kimai-combo-option(
+      ng-repeat-end
+      role="option"
+      aria-selected="{{ item.id == vm.model }}"
+      ng-class="{'is-selected': item.id == vm.model, 'is-active': $index == vm.active}"
+      ng-mousedown="vm.pick(item)"
+      ng-mouseenter="vm.active = $index"
+    )
+      span {{ item.label }}
+      tg-svg(ng-if="item.id == vm.model" svg-icon="icon-check")
+    li.kimai-combo-empty(ng-if="!vm.filtered.length") {{ 'KIMAI.NO_RESULTS' | translate }}

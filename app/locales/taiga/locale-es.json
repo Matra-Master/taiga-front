@@ -425,8 +425,10 @@
         "TITLE": "ÉPICAS",
         "SECTION_NAME": "Épicas",
         "EPIC": "Épica",
-        "CLOCKIFY_PROJECT_ID": "ID del proyecto en Clockify",
-        "CLOCKIFY_PROJECT_ID_PLACEHOLDER": "Introduce el ID del proyecto en Clockify",
+        "KIMAI_PROJECT_ID": "Proyecto en Kimai",
+        "SAVE_KIMAI_PROJECT_ID": "Guardar proyecto de Kimai",
+        "KIMAI_PROJECT_ID_SAVED": "Proyecto de Kimai guardado",
+        "KIMAI_PROJECT_ID_SAVE_ERROR": "No se pudo guardar el proyecto de Kimai",
         "PAGE_TITLE": "Épicas - {{projectName}}",
         "PAGE_DESCRIPTION": "El listado de épicas del proyecto {{projectName}}: {{projectDescription}}",
         "DASHBOARD": {
@@ -454,8 +456,7 @@
             "TITLE": "Nueva Épica",
             "PLACEHOLDER_DESCRIPTION": "Por favor añade un texto descriptivo para ayudar a otros usuarios a entender mejor esta historia.",
             "TEAM_REQUIREMENT": "Requerido por el equipo",
-            "CLOCKIFY_PROJECT_ID":"ID del proyecto en Clockify",
-            "CLOCKIFY_PROJECT_ID_PLACEHOLDER": "Introduce el ID del proyecto en Clockify",
+            "KIMAI_PROJECT_ID": "Proyecto en Kimai",
             "CLIENT_REQUIREMENT": "Requerido por el Cliente",
             "BLOCKED": "Bloqueada",
             "BLOCKED_NOTE_PLACEHOLDER": "¿Por qué está esta épica bloqueada?",
@@ -557,7 +558,7 @@
             "PAGE_TITLE": "{{sectionName}} - Perfil del proyecto - {{projectName}}",
             "PROJECT_DETAILS": "Info del proyecto",
             "PROJECT_NAME": "Nombre del proyecto",
-            "PROJECT_CLOCKIFY_ID": "Id de proyecto en Clockify",
+            "PROJECT_KIMAI_ID": "Proyecto en Kimai",
             "TRACKING_MODE": "Forma de trackeo de tareas",
             "TRACK_BY_PROJECT": "Trackear por proyecto",
             "TRACK_BY_EPIC": "Trackear por épica",
@@ -1061,7 +1062,7 @@
             "DETAILS": "Nuevos detalles del proyecto",
             "PROJECT_TITLE": "Project Name (Required)",
             "PROJECT_DESCRIPTION": "Project Description (Required)",
-            "PROJECT_CLOCKIFY_ID": "Project Clockify Id (Required)"
+            "PROJECT_KIMAI_ID": "Proyecto en Kimai (obligatorio)"
         },
         "DUPLICATE": {
             "TITLE": "Duplicar Proyecto",
@@ -1376,9 +1377,27 @@
         "LIGHTBOX_TITLE_BLOKING_EPIC": "Bloqueo de épica",
         "ACTION_DELETE": "Borrar epic"
     },
+    "KIMAI": {
+        "PROJECTS_ACCESS_HINT": "Solo ves los proyectos de Kimai a los que tu usuario tiene acceso.",
+        "NO_PROJECTS": "Tu usuario de Kimai no tiene acceso a ningún proyecto. Pedile acceso a un administrador de Kimai.",
+        "PROJECTS_LOAD_ERROR": "No se pudieron cargar los proyectos de Kimai. Revisá que tu token de API de Kimai sea válido.",
+        "NO_TOKEN": "Para elegir un proyecto de Kimai, cargá tu token de API de Kimai en tu perfil. Solo vas a ver los proyectos a los que tenés acceso.",
+        "GO_TO_PROFILE": "Ir a mi perfil",
+        "START_TITLE": "Iniciar timer en Kimai",
+        "ACTIVITY": "Actividad",
+        "SEARCH_ACTIVITY": "Buscar actividad...",
+        "START_HINT": "El tiempo empieza a correr cuando toques «Iniciar timer».",
+        "START": "Iniciar timer",
+        "SELECT_ACTIVITY": "Elegí una actividad",
+        "SEARCH_PROJECT": "Buscar proyecto de Kimai...",
+        "NO_RESULTS": "Sin resultados",
+        "SELECT_PROJECT": "Elegí un proyecto de Kimai",
+        "PROJECT_ACTIVITIES": "Actividades del proyecto",
+        "GLOBAL_ACTIVITIES": "Actividades globales"
+    },
     "US": {
-        "TIMER_START": "Se inició el timer de Clockify",
-        "TIMER_STOP": "Se paró el timer de Clockify",
+        "TIMER_START": "Se inició el timer de Kimai",
+        "TIMER_STOP": "Se paró el timer de Kimai",
         "PAGE_TITLE": "{{userStorySubject}} - Historia de Usuario {{userStoryRef}} - {{projectName}}",
         "PAGE_DESCRIPTION": "Estado: {{userStoryStatus }}. Completado el {{userStoryProgressPercentage}}% ({{userStoryClosedTasks}} de {{userStoryTotalTasks}} tareas cerradas). Puntos: {{userStoryPoints}}. Descripción: {{userStoryDescription}}",
         "SECTION_NAME": "Historia de usuario",
@@ -1846,7 +1865,8 @@
             "LANGUAGE_DEFAULT": "- usar idioma por defecto -",
             "THEME": "Tema",
             "THEME_DEFAULT": "-- usar tema por defecto --",
-            "CLOCKIFY_KEY": "Clave de Clockify",
+            "KIMAI_TOKEN": "Token de API de Kimai",
+            "KIMAI_TOKEN_PLACEHOLDER": "Kimai → Mi perfil → API → crear token",
             "API_TOKEN": "Token de API",
             "PLACEHOLDER_API_TOKEN": "Copia para obtener tu token"
         }

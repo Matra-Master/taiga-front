@@ -19,7 +19,7 @@
     }
 }
 
-.clockify-project-settings {
+.kimai-project-settings {
     margin: 16px 0;
 
     label {
@@ -40,7 +40,7 @@
         width: 100%;
 
         &:focus {
-            border-color: $clockify-light-blue;
+            border-color: $kimai-blue;
             box-shadow: 0 0 0 3px rgba(0, 123, 255, .1);
             outline: none;
         }
@@ -61,7 +61,7 @@
         }
     }
 
-    .save-clockify-btn {
+    .save-kimai-btn {
         align-items: center;
         background: $color-gray200;
         border: none;
