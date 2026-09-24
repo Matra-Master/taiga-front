@@ -1,0 +1,10 @@
+//- This source code is licensed under the terms of the
+//- GNU Affero General Public License found in the LICENSE file in
+//- the root directory of this source tree.
+//-
+//- Copyright (c) 2021-present Kaleidos INC
+
+fieldset
+    label {{ 'PROJECT.COMMON.PROJECT_KIMAI_ID' | translate }}
+    tg-kimai-project-select(model="vm.projectForm.kimai_project_id")
+    .error-text(ng-if="!!vm.errorList.includes('kimai_project_id')") {{ 'COMMON.FORM_ERRORS.REQUIRED'|translate }}

@@ -50,8 +50,7 @@ class EpicDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
         @scope.epicRef = @params.epicref
         @scope.sectionName = @translate.instant("EPIC.SECTION_NAME")
         @scope.attachmentsReady = false
-        @scope.clockifyProjectIdChanged = false
-        @scope.savingClockifyProjectId = false
+        @scope.savingKimaiProjectId = false
         
         @scope.$on "attachments:loaded", () =>
             @scope.attachmentsReady = true
@@ -201,21 +200,17 @@ class EpicDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
 
         return transform.then(onSelectColorSuccess, onSelectColorError)
 
-    onClockifyProjectIdChange: ->
-        @scope.clockifyProjectIdChanged = true
+    saveKimaiProjectId: ->
+        @scope.savingKimaiProjectId = true
 
-    saveClockifyProjectId: ->
-        @scope.savingClockifyProjectId = true
-        
         onSaveSuccess = () =>
-            @scope.clockifyProjectIdChanged = false
-            @scope.savingClockifyProjectId = false
+            @scope.savingKimaiProjectId = false
             @rootscope.$broadcast("object:updated")
-            @confirm.notify('success', @translate.instant('EPICS.CLOCKIFY_PROJECT_ID_SAVED'))
+            @confirm.notify('success', @translate.instant('EPICS.KIMAI_PROJECT_ID_SAVED'))
 
         onSaveError = () =>
-            @scope.savingClockifyProjectId = false
-            @confirm.notify('error', @translate.instant('EPICS.CLOCKIFY_PROJECT_ID_SAVE_ERROR'))
+            @scope.savingKimaiProjectId = false
+            @confirm.notify('error', @translate.instant('EPICS.KIMAI_PROJECT_ID_SAVE_ERROR'))
 
         transform = @modelTransform.save (epic) ->
             return epic

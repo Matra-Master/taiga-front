@@ -1,0 +1,238 @@
+.timer-button {
+    background-color: $kimai-blue;
+    border-radius: 5px;
+    color: $kimai-white;
+    font-weight: 600;
+    padding: 10px 20px;
+}
+.stop-button {
+    background-color: $kimai-red;
+}
+.kimai-buttons-container {
+    margin: 16px 0;
+}
+.timer-buttons-container {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    justify-content: flex-start;
+    width: 100%;
+}
+// Select de una sola opción con búsqueda: cerrado se ve como un select de Taiga,
+// abierto el mismo campo pasa a ser el buscador y la lista flota debajo.
+.kimai-combo {
+    position: relative;
+    width: 100%;
+}
+
+.kimai-combo-field {
+    align-items: center;
+    background: $color-white;
+    border: 2px solid $color-gray400;
+    border-radius: 3px;
+    color: $color-black600;
+    display: flex;
+    gap: .5rem;
+    min-height: 2.5rem;
+    padding: .3rem 1rem .3rem .95rem;
+    text-align: left;
+    width: 100%;
+
+    &:focus,
+    &:focus-visible {
+        border-color: $color-link-primary;
+        outline: none;
+    }
+}
+
+button.kimai-combo-field {
+    border: 2px solid $color-gray400;
+    cursor: pointer;
+
+    &:hover {
+        border-color: rgba($color-black600, .4);
+    }
+
+    &:focus {
+        border: 2px solid $color-link-primary;
+    }
+}
+
+.kimai-combo-value,
+.kimai-combo-placeholder {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kimai-combo-placeholder {
+    color: rgba($color-black600, .5);
+}
+
+.kimai-combo-chevron {
+    fill: $color-black600;
+    flex-shrink: 0;
+    height: .7rem;
+    width: .7rem;
+}
+
+.kimai-combo-list {
+    background: $color-white;
+    border: 2px solid $color-gray400;
+    border-radius: 3px;
+    box-shadow: 0 6px 16px rgba($color-black600, .15);
+    left: 0;
+    list-style: none;
+    margin: 4px 0 0;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 4px 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 99;
+}
+
+.kimai-combo-option {
+    align-items: center;
+    color: $color-black600;
+    cursor: pointer;
+    display: flex;
+    gap: .5rem;
+    justify-content: space-between;
+    padding: .45rem .95rem;
+
+    &.is-active {
+        background: $color-gray200;
+    }
+
+    &.is-selected {
+        font-weight: 600;
+    }
+
+    svg {
+        fill: $color-link-primary;
+        flex-shrink: 0;
+        height: .8rem;
+        width: .8rem;
+    }
+}
+
+.kimai-combo-group {
+    color: rgba($color-black600, .6);
+    font-size: .8rem;
+    padding: .6rem .95rem .2rem;
+
+    &:not(:first-child) {
+        border-top: 1px solid $color-gray200;
+        margin-top: 4px;
+    }
+}
+
+.kimai-combo-empty {
+    color: rgba($color-black600, .6);
+    padding: .45rem .95rem;
+}
+
+// Popover para elegir la actividad antes de iniciar: el timer arranca recién al confirmar.
+.kimai-start {
+    position: relative;
+}
+
+.kimai-start-popover {
+    background: $color-white;
+    border: 2px solid $color-gray400;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba($color-black600, .18);
+    left: 0;
+    padding: 1rem;
+    position: absolute;
+    top: calc(100% + 8px);
+    width: 380px;
+    z-index: 100;
+}
+
+.kimai-start-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .25rem;
+
+    h4 {
+        color: $color-black600;
+        font-weight: 600;
+        margin: 0;
+    }
+}
+
+.kimai-start-close {
+    background: none;
+    display: flex;
+    padding: .25rem;
+
+    svg {
+        fill: rgba($color-black600, .6);
+        height: .8rem;
+        width: .8rem;
+    }
+
+    &:hover svg {
+        fill: $color-black600;
+    }
+}
+
+.kimai-start-subject {
+    color: rgba($color-black600, .75);
+    margin: 0 0 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kimai-start-label {
+    color: $color-black600;
+    display: block;
+    font-weight: 600;
+    margin-bottom: .35rem;
+}
+
+.kimai-start-hint {
+    color: rgba($color-black600, .6);
+    font-size: .85rem;
+    margin: .6rem 0 1rem;
+}
+
+.kimai-start-actions {
+    display: flex;
+    gap: .5rem;
+    justify-content: flex-end;
+}
+
+// Ayuda y avisos del selector de proyecto de Kimai.
+.kimai-project-help {
+    color: rgba($color-black600, .6);
+    font-size: .85rem;
+    margin: .35rem 0 0;
+
+    &.is-warning {
+        color: $color-link-red;
+    }
+}
+
+.kimai-project-notice {
+    background: $color-gray100;
+    border: 2px solid $color-gray400;
+    border-radius: 3px;
+    color: $color-black600;
+    padding: .75rem 1rem;
+
+    p {
+        margin: 0 0 .35rem;
+    }
+
+    a {
+        color: $color-link-primary;
+        font-weight: 600;
+    }
+}

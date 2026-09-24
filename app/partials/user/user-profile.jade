@@ -126,17 +126,16 @@ div.wrapper(
                     )
 
                 fieldset
-                    label(for="clockify_key", translate="USER_PROFILE.FIELD.CLOCKIFY_KEY")
+                    label(for="kimai_token", translate="USER_PROFILE.FIELD.KIMAI_TOKEN")
                     input(
-                        type="text"
-                        autocorrect="off"
-                        autocapitalize="none"
-                        name="clockify_key"
-                        id="clockify_key"
-                        ng-model="user.clockify_key"
+                        type="password"
+                        autocomplete="off"
+                        name="kimai_token"
+                        id="kimai_token"
+                        ng-model="user.kimai_token"
                         data-required="false"
                         data-maxlength="255"
-                        placeholder="Get API key from Clockify -> Preferences -> Advanced",
+                        placeholder="{{ 'USER_PROFILE.FIELD.KIMAI_TOKEN_PLACEHOLDER' | translate }}"
                     )
 
                 fieldset

@@ -1,0 +1,56 @@
+div.timer-buttons-container
+  .kimai-start
+    button.timer-button(
+      type="button"
+      ng-click="openStart()"
+      ng-disabled="vm.loading"
+      aria-haspopup="dialog"
+      aria-expanded="{{ !!vm.activities }}"
+    ) {{vm.start}}
+
+    .kimai-start-popover(
+      ng-if="vm.activities"
+      role="dialog"
+      aria-labelledby="kimai-start-title-{{ $id }}"
+      ng-keydown="$event.key == 'Escape' && cancel()"
+    )
+      .kimai-start-header
+        h4(id="kimai-start-title-{{ $id }}") {{ 'KIMAI.START_TITLE' | translate }}
+        button.kimai-start-close(
+          type="button"
+          ng-click="cancel()"
+          aria-label="{{ 'COMMON.CLOSE' | translate }}"
+        )
+          tg-svg(svg-icon="icon-close")
+
+      p.kimai-start-subject {{ vm.description }}
+
+      label.kimai-start-label {{ 'KIMAI.ACTIVITY' | translate }}
+      tg-kimai-search-select(
+        items="vm.activities"
+        model="vm.activityId"
+        start-open="true"
+        placeholder="{{ 'KIMAI.SELECT_ACTIVITY' | translate }}"
+        search-placeholder="{{ 'KIMAI.SEARCH_ACTIVITY' | translate }}"
+      )
+
+      p.kimai-start-hint {{ 'KIMAI.START_HINT' | translate }}
+
+      .kimai-start-actions
+        button.btn-small(
+          type="button"
+          variant="secondary"
+          ng-click="cancel()"
+        ) {{ 'COMMON.CANCEL' | translate }}
+        button.btn-small(
+          type="button"
+          variant="primary"
+          ng-disabled="!vm.activityId"
+          ng-click="startTimer()"
+        ) {{ 'KIMAI.START' | translate }}
+
+  button.timer-button.stop-button(
+    type="button"
+    ng-if="!vm.removeStopButton"
+    ng-click="stopTimer()"
+    ) {{vm.stop}}

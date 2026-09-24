@@ -1,0 +1,14 @@
+.kimai-project-notice(ng-if="!vm.hasToken")
+  p {{ 'KIMAI.NO_TOKEN' | translate }}
+  a(tg-nav="user-settings-user-profile") {{ 'KIMAI.GO_TO_PROFILE' | translate }}
+
+div(ng-if="vm.hasToken")
+  tg-kimai-search-select(
+    items="vm.projects"
+    model="vm.model"
+    placeholder="{{ 'KIMAI.SELECT_PROJECT' | translate }}"
+    search-placeholder="{{ 'KIMAI.SEARCH_PROJECT' | translate }}"
+  )
+  p.kimai-project-help(ng-if="!vm.error && !(vm.projects && !vm.projects.length)") {{ 'KIMAI.PROJECTS_ACCESS_HINT' | translate }}
+  p.kimai-project-help.is-warning(ng-if="vm.projects && !vm.projects.length") {{ 'KIMAI.NO_PROJECTS' | translate }}
+  p.kimai-project-help.is-warning(ng-if="vm.error") {{ 'KIMAI.PROJECTS_LOAD_ERROR' | translate }}

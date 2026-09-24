@@ -40,13 +40,13 @@ class CreatetProjectFormController
         @.errorList = []
         if !@.projectForm.name then @.errorList.push('name')
         if !@.projectForm.description then @.errorList.push ('description')
-        if !@.projectForm.clockify_id then @.errorList.push ('clockify_id')
+        if !@.projectForm.kimai_project_id then @.errorList.push ('kimai_project_id')
         if(@.errorList.length == 0)
             @.formSubmitLoading = true
             @projectsService.create(@.projectForm).then (project) =>
                 if(project && project.status)
                     error = project
-                    @confirmService.notify("error",error.data.clockify_id[0])
+                    @confirmService.notify("error", _.flatten(_.values(error.data))[0])
                     return
                 @analytics.trackEvent("project", "create", "project creation", {slug: project.get('slug'), id: project.get('id')})
                 @location.url(@projectUrl.get(project))
