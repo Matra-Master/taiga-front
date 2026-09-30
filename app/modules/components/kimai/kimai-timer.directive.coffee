@@ -1,3 +1,8 @@
+# ponytail: todavía no están definidas las actividades de Kimai, así que "Start" imputa siempre a la
+# actividad global "Default" (id 9 en Kimai; "0003" es su número, no su id). Poner null para volver
+# al popover con el selector de actividades.
+KIMAI_DEFAULT_ACTIVITY_ID = 9
+
 KimaiTimerDirective = ($http, $tgUrls, confirmService, $translate, $timeout) ->
     getTags = (project, userStory) ->
         issueType = project.issue_types.find((issue) => issue.id == userStory.type)
@@ -32,6 +37,10 @@ KimaiTimerDirective = ($http, $tgUrls, confirmService, $translate, $timeout) ->
             return "TG-#{usRef}#{taskPart} #{subject}"
 
         $scope.openStart = () ->
+            if KIMAI_DEFAULT_ACTIVITY_ID
+                vm.activityId = KIMAI_DEFAULT_ACTIVITY_ID
+                return $scope.startTimer()
+
             vm.loading = true
             vm.activityId = null
             vm.description = describe(buildEntry())
